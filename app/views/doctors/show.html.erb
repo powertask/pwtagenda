@@ -1,0 +1,16 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('doctor.index'), doctors_path) %> </a>
+</div>
+
+<div class='title_page'> <%= t('doctor.show') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("doctor.treatment") %>: </div>
+  <%= @doctor.treatment %>
+  <div class='label1 top req'> <%=t("doctor.name") %>: </div>
+  <%= @doctor.name %>
+  <div class='label1 top req'> <%=t("phone") %>: </div>
+  <%= @doctor.phone %>
+  <div class='label1 top req'> <%=t("email") %>: </div>
+  <%= @doctor.email %>
+</div>

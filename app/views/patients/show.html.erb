@@ -1,0 +1,22 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('patient.index'), patients_path) %> </a>
+</div>
+
+<div class='title_page'> <%= t('patient.show') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("patient.name") %>: </div>
+  <%= @patient.name %>
+  <div class='label1 top req'> <%=t("patient.health_insurance") %>: </div>
+  <%= @patient.health_insurance.name %>
+  <div class='label1 top req'> <%=t("patient.birthday") %>: </div>
+  <%= @patient.birthday.to_s_br %>
+  <div class='label1 top req'> <%=t("gender") %>: </div>
+  <%= @patient.gender == "M" ? "Masculino" : "Feminino" %>
+  <div class='label1 top req'> <%=t("phone") %>: </div>
+  <%= @patient.phone %>
+  <div class='label1 top req'> <%=t("sms") %>: </div>
+  <%= @patient.sms %>
+  <div class='label1 top req'> <%=t("email") %>: </div>
+  <%= @patient.email %>
+</div>

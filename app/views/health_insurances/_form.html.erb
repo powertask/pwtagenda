@@ -1,0 +1,24 @@
+<%= simple_form_for(
+        @health_insurance,
+        html: { class: 'form-horizontal' }, 
+        wrapper: :horizontal_form,
+        wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean
+      }) do |f| %>
+
+  <%= f.error_notification %>
+
+  <div class='section'>
+    <%= f.input :unit_id, as: :hidden %>
+    <%= f.input :name, label: t('health_insurance.name') %>
+  </div>
+
+  <div class='buttonbar'>
+    <%= f.button :submit, t('menu.save'), :disable_with => t('menu.saving'), class: 'btn-primary' %>
+    <%= 'ou' %>
+    <%= link_to t('menu.cancel'), doctors_path %>
+  </div>
+<% end %>

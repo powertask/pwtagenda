@@ -1,0 +1,30 @@
+<%= simple_form_for(
+        @patient,
+        html: { class: 'form-horizontal' }, 
+        wrapper: :horizontal_form,
+        wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean
+      }) do |f| %>
+
+  <%= f.error_notification %>
+
+  <div class='section'>
+    <%= f.input :unit_id, as: :hidden %>
+    <%= f.input :name, label: t('patient.name') %>
+    <%= f.input :birthday, as: :string, label: t('patient.birthday') %>
+    <%= f.association :health_insurance, label: t('patient.health_insurance'), collection: HealthInsurance.list(current_user.unit_id), :prompt => t('health_insurance.choose') %>
+    <%= f.input :gender, as: :radio_buttons, label: t('gender'), collection: [['Masculino', 'M'],['Feminino', 'F']] %>
+    <%= f.input :phone, label: t('phone') %>
+    <%= f.input :sms, label: t('sms') %>
+    <%= f.input :email, label: t('email') %>
+  </div>
+
+  <div class='buttonbar'>
+    <%= f.button :submit, t('menu.save'), :disable_with => t('menu.saving'), class: 'btn-primary' %>
+    <%= 'ou' %>
+    <%= link_to t('menu.cancel'), patients_path %>
+  </div>
+<% end %>

@@ -1,0 +1,50 @@
+<% unless @agenda_items.nil? %>
+
+  <div class='title_tools'>
+    <%= link_to(t('agenda_item.new'), new_agenda_item_path)%>
+  </div>
+
+  <div class='title'>
+    <span>
+      <%= t('agenda.title') %>
+      <%= @agenda.agenda_date.to_s_br %>
+    </span>
+  </div>
+
+  <div class='list1'>
+    <% @agenda_items.each do |agenda_item| %>
+      <li>
+        <div class='strip1' id='none'> <%= agenda_item.scheduled_to.strftime("%H:%M") %> </div>
+
+        <div class='tools'>
+          <%= link_to(t('menu.edit'), edit_agenda_item_path(agenda_item)) << ' | ' %>
+          <%= link_to(t('menu.show'), agenda_item_path(agenda_item)) %>
+        </div>
+
+        <div class='indent'>
+          <%= agenda_item.doctor.name %>
+            &ndash;
+          <% if agenda_item.name.nil? %>
+            <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item)) %>
+          <% else %>
+              <%= link_to(agenda_item.name, agenda_item_path(agenda_item)) unless agenda_item.name.empty? %>
+              &ndash;
+              <tt>
+            </tt>
+              <dt>
+            </dt>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+
+    <% else %>
+      <%= render :partial => "common/empty" %>
+    <% end %>
+
+  </div>
+
+<% else %>
+  <h1>pwtAGENDA</h1>
+  <p><h2>Sistema para gestão de clínicas</h2></p>
+<% end %>

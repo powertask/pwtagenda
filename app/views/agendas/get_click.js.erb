@@ -1,0 +1,2 @@
+$("#list_events").html("<%= escape_javascript(render :partial => '/agendas/events', :locals => {agenda_items: @agenda_items, agenda: @agenda} ) %>"); 
+

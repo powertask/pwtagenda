@@ -1,0 +1,31 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('health_insurance.new'), new_health_insurance_path) %> </a>
+</div>
+
+<div class='title_page'>
+  <span> <%= t('health_insurance.title') %> </span>
+</div>
+
+<div class='list1'>
+  <% @health_insurances.each do |health_insurance| %>
+    <li>
+      <div class='strip' id='none'> <%= health_insurance.id %> </div>
+
+      <div class='tools'>
+        <a class="btn btn-xs btn-default" <%= link_to(t('menu.edit'), edit_health_insurance_path(health_insurance)) %> </a>
+      </div>
+
+      <div class='indent'>
+        <%= link_to(health_insurance.name, health_insurance_path(health_insurance)) %>
+        <tt></tt>
+        <dt></dt>
+      </div>
+    </li>
+  <% end %>
+</div>
+
+<div id='paginate'>
+  <div class="apple_pagination">
+    <%= will_paginate @health_insurances, :container => false %>
+  </div>
+</div>

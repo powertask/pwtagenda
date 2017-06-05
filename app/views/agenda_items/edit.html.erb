@@ -1,0 +1,33 @@
+<div class='title'> <%= t('agenda.mark') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("agenda.agenda_date") %>: </div>
+  <span class="label label-success"><%= @agenda.agenda_date.to_s_br %></span>
+  <div class='label1 top req'> <%=t("agenda_item.scheduled_to") %>: </div>
+  <span class="label label-success"><%= @agenda_item.scheduled_to.strftime("%H:%M") %></span>
+  <div class='label1 top req'> <%=t("agenda.doctor") %>: </div>
+  <span class="label label-success"><%= @agenda.doctor.name %></span>
+  <div class='label1 top req'> <%=t("agenda.room") %>: </div>
+  <%= @agenda.room.name %>
+</div>
+</br>
+
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to('Cadastrar Novo Paciente', new_patient_path, cod: 1) %> </a>
+</div>
+
+<div class='subtitle_page'>
+  <span> <%= 'Paciente' %> </span>
+</div>
+<br>
+
+<%= simple_form_for(@agenda_item) do |f| %>
+
+  <%= f.association :patient, :label => false, collection: Patient.list(current_user.id).order(:name) %>
+  
+  <div class='buttonbar'>
+    <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
+    <%= 'ou' %>
+    <%= link_to t('menu.cancel'), agendas_path %>
+  </div>
+<% end %>

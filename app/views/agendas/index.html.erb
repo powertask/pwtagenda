@@ -1,0 +1,32 @@
+<div class='title_tools'>
+  <%= link_to(t('agenda.new'), new_agenda_path, class: "btn btn-large btn-default") %>
+</div>
+
+<div class='title_page'>
+  <span> <%= t('agenda.title') %> </span>
+</div>
+
+</br>
+
+<script>
+  $(document).ready(function(){
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month basicWeek basicDay'
+      },
+      lang: 'pt-br',
+      defaultView: 'basicWeek',
+      height: 200,
+      events: "/agendas/get_events",
+      eventClick: function(event, jsEvent, view){
+          showEventDetails(event);
+      },
+    });
+  });
+</script>
+
+<div id='calendar'></div>
+
+<%= render :partial => "/agendas/events", :locals => {agenda_items: @agenda_items} %>

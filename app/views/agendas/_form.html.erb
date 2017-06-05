@@ -1,0 +1,30 @@
+<%= simple_form_for(
+  @agenda, 
+  html: { class: 'form-horizontal' }, 
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+  check_boxes: :horizontal_radio_and_checkboxes,
+  radio_buttons: :horizontal_radio_and_checkboxes,
+  file: :horizontal_file_input,
+  boolean: :horizontal_boolean
+        }) do |f| %>
+
+  <%= f.error_notification %>
+
+  <div class='section'>
+    <%= f.input :unit_id, as: :hidden %>
+    <%= f.association :doctor, label: t('agenda.doctor'), collection: Doctor.list(current_user.unit_id), prompt: t('doctor.choose') %>
+    <%= f.association :room, :label => t('agenda.room'), collection: Room.list(current_user.unit_id), default: 1 %>
+    <%= f.input :agenda_date, as: :string, label: t('agenda.agenda_date') %>
+    <%= f.input :start_at, as: :hour, label: t('agenda.start_at') %>
+    <%= f.input :end_at, as: :hour, label: t('agenda.end_at') %>
+    <%= f.input :count_event, :label => t('agenda.count') %>
+    <%= f.input :interval, :label => t('agenda.interval') %>
+  </div>
+
+  <div class='buttonbar'>
+    <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
+    <%= 'ou' %>
+    <%= link_to t('menu.cancel'), agendas_path %>
+  </div>
+<% end %>

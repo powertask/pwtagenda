@@ -1,0 +1,40 @@
+<%= simple_form_for(
+        @agenda_item,
+        html: { class: 'form-horizontal' }, 
+        wrapper: :horizontal_form,
+        wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean
+      }) do |f| %>
+
+  <%= f.error_notification %>
+  
+  <div class='title'> <%= t('agenda_item.new') %> </div>
+
+  <div class='section'>
+    <div class='label1 top req'> <%=t("agenda.agenda_date") %> </div>
+    <span class="label label-success"><%= @agenda.agenda_date.to_s_br %></span>
+    <div class='label1 top req'> <%=t("agenda.doctor") %> </div>
+    <span class="label label-success"><%= @agenda.doctor.name %></span>
+    <div class='label1 top req'> <%=t("agenda.room") %> </div>
+    <%= @agenda.room.name %>
+  </div>
+  
+  <br>
+  
+  <%= f.input :unit_id, as: :hidden %>
+  <%= f.input :agenda_id, as: :hidden %>
+  <%= f.input :status, as: :hidden %>
+  <%= f.input :extra, as: :hidden %>
+  <%= f.input :scheduled_to, as: :hour, label: t('agenda_item.scheduled_to') %>
+  <%= f.association :patient, label: t('agenda_item.patient') %>
+
+  <div class='buttonbar'>
+    <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
+    <%= 'ou' %>
+    <%= link_to t('menu.cancel'), root_path %>
+  </div>
+  
+<% end %>

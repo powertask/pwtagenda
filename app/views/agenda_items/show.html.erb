@@ -1,0 +1,19 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t("agenda.index"), agendas_path) %> </a>
+</div>
+
+<div class='title_page'> <%= t('agenda_item.show') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("agenda.agenda_date") %>: </div>
+  <span class="label label-success"><%= @agenda.agenda_date.to_s_br %></span>
+  <div class='label1 top req'> <%=t("agenda.scheduled_to") %>: </div>
+  <span class="label label-success"><%= @agenda.scheduled_to.strftime("%H:%M") %></span>
+  <div class='label1 top req'> <%=t("agenda.doctor") %>: </div>
+  <span class="label label-success"><%= @agenda.doctor.name %></span>
+  <div class='label1 top req'> <%=t("agenda.room") %>: </div>
+  <%= @agenda.room.name %>
+  <div class='label1 top req'> <%=t("agenda_item.patient") %>: </div>
+  <%= @agenda_item.patient.name unless @agenda_item.patient.nil? %>
+</div>
+

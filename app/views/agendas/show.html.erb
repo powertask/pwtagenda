@@ -1,0 +1,56 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('agenda.index'), agendas_path) %> </a>
+  <a class="btn btn-large btn-warning" <%= link_to(t('agenda.new'), new_agenda_path) %> </a>
+</div>
+
+<div class='title'> <%= t('agenda.show') %> </div>
+
+<div class='section'>
+  <table width="800" cellpadding="0" cellspacing="0">
+    <tr>
+      <td valign="top"><div class='label1 top req'> <%=t("agenda.name") %>: </div></td>
+      <td><%= @agenda.name %></td>
+    </tr>
+    <tr>
+      <td valign="top"><div class='label1 top req'> <%=t("agenda.room") %>: </div></td>
+      <td><%= @agenda.room.name unless @agenda.room.nil? %></td>
+    </tr>
+    <tr>
+      <td valign="top"><div class='label1 top req'> <%=t("agenda.doctor") %>: </div></td>
+      <td><%= @agenda.doctor.name %></td>
+    </tr>
+      <tr>
+        <td valign="top">
+          <div class='label1 top req'> <%=t("agenda.agenda_date") %>: </div>
+        </td>
+        <td>
+          <%= @agenda.agenda_date.to_s_br %>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <div class='label1 top req'> <%=t("agenda.start_at") %>: </div>
+        </td>
+        <td>
+          <%= @agenda.start_at.strftime("%H:%M") %>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <div class='label1 top req'> <%=t("agenda.end_at") %>: </div>
+        </td>
+        <td>
+          <%= @agenda.end_at.strftime("%H:%M") %>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <div class='label1 top req'> <%=t("agenda.interval") %>: </div>
+        </td>
+        <td>
+          <%= @agenda.interval %>
+        </td>
+      </tr>
+  </table>
+</div>
+

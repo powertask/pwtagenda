@@ -1,0 +1,31 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('patient.new'), new_patient_path) %> </a>
+</div>
+
+<div class='title_page'>
+  <span> <%= t('patient.title') %> </span>
+</div>
+
+<div class='list1'>
+  <% @patients.each do |patient| %>
+    <li>
+      <div class='strip' id='none'> <%= patient.id %> </div>
+
+      <div class='tools'>
+        <a class="btn btn-xs btn-default" <%= link_to(t('menu.edit'), edit_patient_path(patient)) %> </a>
+      </div>
+
+      <div class='indent'>
+        <%= link_to(patient.name, patient_path(patient)) %>
+        <tt></tt>
+        <dt></dt>
+      </div>
+    </li>
+  <% end %>
+</div>
+
+<div id='paginate'>
+  <div class="apple_pagination">
+    <%= will_paginate @patients, :container => false %>
+  </div>
+</div>

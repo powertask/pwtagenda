@@ -1,0 +1,404 @@
+pt-BR:
+  all: Tudo
+  select_blank: '-- Selecione --'
+  select_none: '-- Nenhum --'
+  yes_button: 'Sim'
+  true: Sim
+  false: Não
+
+  admin_pwt: "Admin Powertask"
+  admin_unit: Administração
+  doctor: Profissional
+  user: Usuário
+  user_unit: Usuário
+
+
+  # Views -> Comments.
+  #----------------------------------------------------------------------------
+  edit_comment: Editando comentário
+  show: Exibir
+  update: Salvar Dados
+  log_in: Acessar minha conta
+  sign_in_now: Por favor, informe seus dados de acesso
+
+  choose: -- Selecione --
+  profile: Perfil
+  cnpj: CNPJ
+  id: ID
+  address: Endereço
+  address_complement: Complemento
+  neighborhood: Bairro
+  city_name: Cidade
+  state: Estado
+  email: E-mail
+  zipcode: CEP
+  name: Nome
+  gender: Sexo
+  phone: Telefone
+  sms: SMS
+
+  menu:
+    edit: Editar
+    show: Detalhes
+    search: Filtrar
+    clean: Limpar
+    create: Criar
+    cancel: Cancelar
+    save: Salvar Dados
+    unit: Clínica
+    doctor: Profissionais
+    health_insurance: Planos de Saúde ou Convênios
+    home: Home
+    report: Relatórios
+    main: Cadastros
+    user: Usuários
+    myuser: Meus Dados
+    agenda: Definir Agenda
+    room: Locais de Atendimento
+    saving: Salvando...
+    remove: Apagar
+    patient: Pacientes
+
+  unit:
+    edit: Editar Dados da Clínica
+    show: Detalhe dos Dados da Clínica
+    name: Nome da Clínica
+
+  health_insurance:
+    title: Cadastro de Planos de Saúde e Convênios
+    index: Listar Planos de Saúde ou Convênios
+    new: Cadastrar Novo Plano de Saúde ou Convênio
+    edit: Editar Plano de Saúde ou Convênio
+    show: Detalhe do Plano de Saúde ou Convênio
+    name: Nome do Plano de Saúde ou Convênio
+    choose: Escolher o plano de Saúde
+
+  doctor:
+    title: Cadastro de Profissionais
+    new: Cadastrar Novo Profissional
+    edit: Editar Dados do Profissional
+    index: Listar Todos os Profissionais
+    show: Detalhes do Profissional
+    name: Nome do Profissional
+    treatment: Tratamento dado ao profissional
+    choose: Escolher um profissional
+
+  patient:
+    health_insurance: Plano de Saúde/Convênio do Paciente
+    birthday: Data de Nascimento
+    gender: Sexo
+    cns: Carteira Nacional de Saúde
+    title: Cadastro de Pacientes
+    new: Incluir Novo Paciente
+    edit: Editar Dados do Paciente
+    index: Listar Todos Pacientes
+    create: Criar Paciente
+    show: Detalhes do Paciente
+    name: Nome do Paciente
+    choose: Selecione um paciente
+
+  user:
+    show: Detalhes do usuário
+    index: Listar todos os usuários
+    title: Cadastro de Usuários
+    name: Nome do usuário
+    edit: Editar Dados do Usuário
+    first_name: Nome do usuário
+    last_name: Sobrenome do usuário
+    
+  myuser:
+    title: Meus Dados
+
+  agenda:
+    title: Agenda Diária por Profissional
+    new: Liberar Nova Agenda
+    edit: Editar Agenda
+    index: Listar agendamentos
+    show: Detalhes da Agenda
+    delete: Apagar agenda
+    mark: Marcar Consulta
+    name: Descrição
+    room: Local de Atendimento
+    doctor: Profissional
+    agenda_date: Data do Agendamento
+    start_at: Hora Inicial
+    end_at: Hora Final
+    interval: Tempo em MINUTOS dos atendimentos
+    dt_ini: Início Em
+    dt_end: Termina Em
+    hr_ini_1: Hora inicial
+    count: Quantidade de atendimentos no mesmo horário
+
+  room:
+    title: Cadastro de Locais de Atendimento
+    new: Cadastrar Novo Local de Atendimento
+    edit: Editar Local de Atendimento
+    index: Listar Todas os Locais de Atendimento
+    show: Detalhes dos Locais de Atendimento
+    name: Descrição
+    choose: Selecione um local
+
+  agenda_item:
+    title: Agenda do Dia
+    new: Encaixe
+    edit: Marcar Consulta
+    index: Listar Agendamento
+    show: Detalhes do Agendamento
+    remove: Desmarcar
+    room: Local de Atendimento
+    patient: Paciente
+    scheduled_to: Hora da Consulta
+    not_available: Horário não está disponível.
+    not_deleted: Agenda não pode ser deletada. Existem horários com marcações definidas!!
+    closed: Marcação Encerrada
+    confirm_remove: Confirma desmarcar consulta?
+
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Próximo &#8594;"
+    page_gap: "&hellip;"
+
+  active_record:
+    messages:
+      save: 'Dados gravados com sucesso.'
+
+  # Views -> Passwords.
+  #----------------------------------------------------------------------------
+  confirm_password_intro: Por favor, digite sua nova senha e então confirme-a.
+  password_intro: Por favor, informe seu e-mail, e as instruções para redefinir a sua senha serão enviadas a você.
+  reset_password: Redefnir senha
+  update_password_and_login: Atualizar senha e entrar.
+
+
+  # Pluralizations.
+  #----------------------------------------------------------------------------
+  pluralize:
+    comment:
+      one: '1 comment' # TODO
+      other: '%{count} comments' # TODO
+    contact:
+      one: '1 contato'
+      other: '%{count} contatos'
+    opportunity:
+      one: '1 oportunidade'
+      other: '%{count} oportunidades'
+    lead:
+      one: '1 lead'
+      other: '%{count} leads'
+    day:
+      one: '1 dia'
+      other: '%{count} dias'
+    login:
+      one: '1 login'
+      other: '%{count} logins'
+
+  # Custom date/time formats.
+  #----------------------------------------------------------------------------
+  date:
+    formats:
+      mmddyyyy: "%m/%d/%Y"
+      mmdd: "%b %e"
+      mmddyy: "%b %e, %Y"
+
+  calendar_date_select:
+    ok: OK
+    now: Agora
+    today: Hoje
+    clear: Limpar
+
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%M h"
+      short: "%d/%m, %H:%M h"
+      long: "%A, %d de %B de %Y, %H:%M h"
+      mmddhhss: "%b %e at %l:%M%p"
+    am: ''
+    pm: ''
+
+  # Usado no Array.to_sentence
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
+
+    select:
+      prompt: "Por favor selecione"
+
+  number:
+    format:
+      separator: ','
+      delimiter: '.'
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+    currency:
+      format:
+        format: '%u %n'
+        unit: 'R$'
+        separator: ','
+        delimiter: '.'
+        precision: 2
+        significant: false
+        strip_insignificant_zeros: false
+
+    percentage:
+      format:
+        delimiter: '.'
+
+    precision:
+      format:
+        delimiter: '.'
+
+    human:
+      format:
+        delimiter: '.'
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+      # number_to_human()
+      # new in rails 3: please add to other locales
+      decimal_units:
+        format: "%n %u"
+        units:
+          unit: ""
+          thousand: "mil"
+          million:
+            one: milhão
+            other: milhões
+          billion:
+            one: bilhão
+            other: bilhões
+          trillion:
+            one: trilhão
+            other: trilhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+
+  # distancia do tempo em palavras
+  datetime:
+    distance_in_words:
+      half_a_minute: 'meio minuto'
+      less_than_x_seconds:
+        one: 'menos de 1 segundo'
+        other: 'menos de %{count} segundos'
+      x_seconds:
+        one: '1 segundo'
+        other: '%{count} segundos'
+      less_than_x_minutes:
+        one: 'menos de um minuto'
+        other: 'menos de %{count} minutos'
+      x_minutes:
+        one: '1 minuto'
+        other: '%{count} minutos'
+      about_x_hours:
+        one: 'aproximadamente 1 hora'
+        other: 'aproximadamente %{count} horas'
+      x_days:
+        one: '1 dia'
+        other: '%{count} dias'
+      about_x_months:
+        one: 'aproximadamente 1 mês'
+        other: 'aproximadamente %{count} meses'
+      x_months:
+        one: '1 mês'
+        other: '%{count} meses'
+      about_x_years:
+        one: 'aproximadamente 1 ano'
+        other: 'aproximadamente %{count} anos'
+      over_x_years:
+        one: 'mais de 1 ano'
+        other: 'mais de %{count} anos'
+      almost_x_years:
+        one: 'quase 1 ano'
+        other: 'quase %{count} anos'
+    prompts:
+      year:   "Ano"
+      month:  "Mês"
+      day:    "Dia"
+      hour:   "Hora"
+      minute: "Minuto"
+      second: "Segundo"
+
+  helpers:
+    select:
+      prompt: "Por favor selecione"
+
+    submit:
+      create: 'Criar'  #%{model}'
+      update: 'Salvar Dados' #%{model}'
+      submit: 'Salvar'  #%{model}'
+
+  errors:
+    format: "%{attribute} %{message}"
+
+    template:
+      header:
+        one: "Não foi possível gravar %{model}: 1 erro"
+        other: "Não foi possível gravar %{model}: %{count} erros."
+      body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+
+    messages: &errors_messages
+      inclusion: "não está incluído na lista"
+      exclusion: "não está disponível"
+      invalid: "não é válido"
+      confirmation: "não está de acordo com a confirmação"
+      accepted: "deve ser aceito"
+      empty: "não pode ficar vazio"
+      blank: "não pode ficar em branco"
+      too_long: "é muito longo (máximo: %{count} caracteres)"
+      too_short: "é muito curto (mínimo: %{count} caracteres)"
+      wrong_length: "não possui o tamanho esperado (%{count} caracteres)"
+      not_a_number: "não é um número"
+      not_an_integer: "não é um número inteiro"
+      greater_than: "deve ser maior que %{count}"
+      greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+      equal_to: "deve ser igual a %{count}"
+      less_than: "deve ser menor que %{count}"
+      less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+      odd: "deve ser ímpar"
+      even: "deve ser par"
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "Não foi possível gravar %{model}: 1 erro"
+          other: "Não foi possível gravar %{model}: %{count} erros."
+        body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+
+      messages:
+        taken: "já está em uso"
+        record_invalid: "A validação falhou: %{errors}"
+        <<: *errors_messages
+
+      full_messages:
+        format: "%{attribute} %{message}"

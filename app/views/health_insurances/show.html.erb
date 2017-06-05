@@ -1,0 +1,12 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('health_insurance.index'), health_insurances_path) %> </a>
+</div>
+
+<div class='title_page'> <%= t('health_insurance.show') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("id") %>: </div>
+  <%= @health_insurance.id %>
+  <div class='label1 top req'> <%=t("health_insurance.name") %>: </div>
+  <%= @health_insurance.name %>
+</div>

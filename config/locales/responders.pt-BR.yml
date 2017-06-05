@@ -1,0 +1,12 @@
+pt-BR:
+  flash:
+    actions:
+      create:
+        notice: 'Registro criado com sucesso.'
+        # alert: '%{resource_name} could not be created.'
+      update:
+        notice: 'Registro foi atualizado com sucesso.'
+        # alert: '%{resource_name} could not be updated.'
+      destroy:
+        notice: 'Registro foi deletado com sucesso.'
+        alert: 'Registro não foi deletado.'

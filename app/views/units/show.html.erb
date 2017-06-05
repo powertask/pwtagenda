@@ -1,0 +1,27 @@
+<div class='title_tools'>
+    <a class="btn btn-large btn-warning" <%= link_to(t('unit.edit'), edit_unit_path(@unit)) %> </a>
+</div>
+
+<div class='title_page'> <%= t('unit.show') %> </div>
+
+<div class='section'>
+    <div class='label1 top req'> <%=t("unit.name") %>: </div>
+    <%= @unit.name %>
+    <div class='label1 top req'> <%=t("cnpj") %>: </div>
+    <%= @unit.cnpj %>
+    <div class='label1 top req'> <%=t("zipcode") %>: </div>
+    <%= @unit.zipcode %>
+    <div class='label1 top req'> <%=t("address") %>: </div>
+    <%= @unit.address %>
+    <div class='label1 top req'> <%=t("address_complement") %>: </div>
+    <%= @unit.address_complement %>
+    <div class='label1 top req'> <%=t("neighborhood") %>: </div>
+    <%= @unit.neighborhood %>
+    <div class='label1 top req'> <%=t("city_name") %>: </div>
+    <%= @unit.city_name %>
+    <div class='label1 top req'> <%=t("state") %>: </div>
+    <%= @unit.state %>
+    <div class='label1 top req'> <%=t("email") %>: </div>
+    <%= @unit.email %>
+</div>
+

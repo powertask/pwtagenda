@@ -1,0 +1,157 @@
+<div id='list_events' class='list1'>
+
+  <% if @agenda_items.present? && @agenda.agenda_date >= Date.current %>
+    <div class='title_tools'>
+
+      <%= link_to(t('agenda.delete'), {controller: "agendas", action: "delete_agenda", cod: @agenda.id}, remote: true, id: 'delete_agenda', class: "btn btn-large btn-danger") %>
+    
+      <%= link_to(t('agenda_item.new'), new_agenda_item_path, class: "btn btn-large btn-default") %> 
+
+    </div>
+  <% end %>
+
+  <div class='title_page'>
+    <% if @agenda %>
+      <%= @agenda.agenda_date.to_s_br %>
+      &dash;
+      <%= @agenda.doctor.name %>
+      &dash;
+      <%= @agenda.room.name %>
+    <% end %>
+  </div>
+
+  <% @agenda_items.each do |agenda_item| %>
+    <li>
+      <div class="strip-label strip-label-primary"><%= agenda_item.scheduled_to.strftime("%H:%M") %></div>
+
+      <div class='tools'>
+        <% if agenda_item.attended? %>
+          <span class="label label-success"><%= "Compareceu" %></span>
+        <% end %>
+
+        <% if agenda_item.not_attended? %>
+          <span class="label label-warning"><%= "Faltou" %></span>
+        <% end %>
+
+        <% if agenda_item.marked? %>
+
+          <%= link_to "Compareceu?", {controller: "agenda_items", action: "set_attended_event", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
+
+          <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, id: 'not_attended_event', class: "btn btn-xs btn-default" %>
+
+          <%= link_to "Desmarcar?", {controller: "agenda_items", action: "unset_event", cod: agenda_item.id}, remote: true, id: 'unset_event', class: "btn btn-xs btn-default" %>
+
+          <%= link_to(t('menu.edit'), edit_agenda_item_path(agenda_item), class: "btn btn-xs btn-default") %>
+
+        <% end %>       
+      </div>
+
+      <div class='indent'>
+        <% if agenda_item.empty? %>
+          <% if agenda_item.scheduled_to >= Time.current %>
+            <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "label label-success") %>
+          <% else %>
+            <span class="label label-info"><%= "Marcação Encerrada" %></span>
+          <% end %>
+        <% else %>
+          <%= agenda_item.id %>
+          <% if agenda_item.extra %>
+            &bull;
+            <a class="btn btn-xs btn-primary"><%= "Encaixe" %></a>
+          <% end %>
+          &bull;
+          <%= link_to(agenda_item.patient.name, agenda_item_path(agenda_item)) %>
+          <tt></tt>
+          <dt></dt>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</div>
+
+<script>
+  $(function() {
+    $('.tools #attended_event').click(function (event) {
+      var targetUrl = $(this).attr("href");
+      $.confirm({
+          title: 'Compareceu?',
+          content: 'Marcar comparecimemto na hora marcada',
+        confirmButton: 'Sim',
+        cancelButton: 'Cancelar',
+        confirmButtonClass: 'btn-danger',
+        theme: 'supervan',
+          confirm: function(){
+              window.location.href = targetUrl;
+          },
+          cancel: function(){
+
+          }
+      });
+      return false;
+    });
+  });
+
+  $(function() {
+    $('.tools #not_attended_event').click(function (event) {
+      var targetUrl = $(this).attr("href");
+      $.confirm({
+          title: 'Faltou?',
+          content: 'Deseja marcar a falta na hora marcada?',
+        confirmButton: 'Sim',
+        cancelButton: 'Cancelar',
+        confirmButtonClass: 'btn-danger',
+        theme: 'supervan',
+          confirm: function(){
+              window.location.href = targetUrl;
+          },
+          cancel: function(){
+
+          }
+      });
+      return false;
+    });
+  });
+
+  $(function() {
+    $('.tools #unset_event').click(function (event) {
+      var targetUrl = $(this).attr("href");
+      $.confirm({
+          title: 'Desmarcar?',
+          content: 'Deseja desmarcar a hora marcada?',
+        confirmButton: 'Sim',
+        cancelButton: 'Cancelar',
+        confirmButtonClass: 'btn-danger',
+        theme: 'supervan',
+          confirm: function(){
+              window.location.href = targetUrl;
+          },
+          cancel: function(){
+
+          }
+      });
+      return false;
+    });
+  });
+
+  $(function() {
+    $('#delete_agenda').click(function (event) {
+      var targetUrl = $(this).attr("href");
+      $.confirm({
+          title: 'Deletar agenda?',
+          content: 'Deseja deletar a agenda criada?',
+        confirmButton: 'Sim',
+        cancelButton: 'Cancelar',
+        confirmButtonClass: 'btn-danger',
+        theme: 'supervan',
+          confirm: function(){
+              window.location.href = targetUrl;
+          },
+          cancel: function(){
+
+          }
+      });
+      return false;
+    });
+  });
+
+</script>
