@@ -23,6 +23,10 @@ gem 'responders'
 gem 'brazilian-rails'
 gem 'will_paginate'
 
+gem "font-awesome-rails"
+gem 'magnific-popup-rails', '~> 1.1.0'
+gem "scrollreveal-rails"
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
