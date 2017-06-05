@@ -6,16 +6,12 @@
 //= require fullcalendar
 //= require bootstrap
 //= require rails-ujs
+//= require scrollReveal
 //= require creative
 //= require powertask 
 //= require turbolinks
 //= require_tree .
 //= require jquery.turbolinks
-//= require scrollReveal
-
-$(function() {
-  window.scrollReveal = new scrollReveal();
-});
 
 function showEventDetails(event){
     jQuery.ajax({
