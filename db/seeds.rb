@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-unit = Unit.create!(  name: 'Clinica Tiradentes Ltda',
+unit = Unit.create!(  name: 'Clinica Demonstração e Teste Ltda',
                       cnpj: '05948778000140'  )
 
 user = User.create!(  email: 'marcelo@powertask.com.br', 
@@ -17,11 +17,19 @@ user = User.create!(  email: 'marcelo@powertask.com.br',
                       profile: 0,
                       unit_id: unit.id)
 
-doctor1 = Doctor.create!( unit_id: unit.id,
-                          name: 'Dr. Pedro Xyz',
-                          phone: '234456675',
-                          email: 'joaoxyz@test.com',
-                          treatment: 'Dr.')
+user = User.create!(  email: 'luciano@powertask.com.br', 
+                      password: 'galotito', 
+                      password_confirmation: 'galotito', 
+                      name: 'Luciano Monaco', 
+                      profile: 0,
+                      unit_id: unit.id)
+
+user = User.create!(  email: 'demonstracao@powertask.com.br', 
+                      password: 'demonstracao123', 
+                      password_confirmation: 'demonstracao123', 
+                      name: 'Usuário Demonstração', 
+                      profile: 0,
+                      unit_id: unit.id)
 
 doctor2 = Doctor.create!( unit_id: unit.id, 
                           name: 'Dr. John Doe',
@@ -30,15 +38,17 @@ doctor2 = Doctor.create!( unit_id: unit.id,
                           treatment: 'Dr.')
 
 doctor3 = Doctor.create!( unit_id: unit.id, 
-                          name: 'Dr. Lulu Santos',
+                          name: 'Dr. Lorem Ypsum',
                           phone: '234456675',
-                          email: 'lulu@test.com',
+                          email: 'lorem@test.com',
                           treatment: 'Dr.')
 
 
 hi1 = HealthInsurance.create!( unit_id: unit.id,
-                              name: 'Unimed')
+                              name: 'Particular')
 hi2 = HealthInsurance.create!( unit_id: unit.id,
+                              name: 'Unimed')
+hi3 = HealthInsurance.create!( unit_id: unit.id,
                               name: 'Caixa')
 
 room1 = Room.create!( unit_id: unit.id,
