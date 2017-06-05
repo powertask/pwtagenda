@@ -57,7 +57,7 @@ pt-BR:
     room: Locais de Atendimento
     saving: Salvando...
     remove: Apagar
-    patient: Pacientes
+    patient: Clientes
 
   unit:
     edit: Editar Dados da Clínica
@@ -84,18 +84,18 @@ pt-BR:
     choose: Escolher um profissional
 
   patient:
-    health_insurance: Plano de Saúde/Convênio do Paciente
+    health_insurance: Plano de Saúde/Convênio do Cliente
     birthday: Data de Nascimento
     gender: Sexo
     cns: Carteira Nacional de Saúde
-    title: Cadastro de Pacientes
-    new: Incluir Novo Paciente
-    edit: Editar Dados do Paciente
-    index: Listar Todos Pacientes
-    create: Criar Paciente
-    show: Detalhes do Paciente
-    name: Nome do Paciente
-    choose: Selecione um paciente
+    title: Cadastro de Clientes
+    new: Incluir Novo Cliente
+    edit: Editar Dados do Cliente
+    index: Listar Todos Clientes
+    create: Criar Cliente
+    show: Detalhes do Cliente
+    name: Nome do Cliente
+    choose: Selecione um cliente
 
   user:
     show: Detalhes do usuário
@@ -146,7 +146,7 @@ pt-BR:
     show: Detalhes do Agendamento
     remove: Desmarcar
     room: Local de Atendimento
-    patient: Paciente
+    patient: Cliente
     scheduled_to: Hora da Consulta
     not_available: Horário não está disponível.
     not_deleted: Agenda não pode ser deletada. Existem horários com marcações definidas!!
