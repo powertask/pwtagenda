@@ -7,6 +7,7 @@
 //= require bootstrap
 //= require rails-ujs
 //= require creative
+//= require powertask 
 //= require turbolinks
 //= require_tree .
 //= require jquery.turbolinks
