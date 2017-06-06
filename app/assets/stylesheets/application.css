@@ -11,9 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
   *= require jquery-ui
-  *= require 'fullcalendar'
-  *= require 'creative'
-  *= require 'bootstrap'
+  *= require fullcalendar
+  *= require creative
+  *= require bootstrap
+  *= require font-awesome
+  *= require magnific-popup
   *= require_tree .
   *= require_self
  */

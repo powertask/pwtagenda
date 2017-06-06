@@ -14,6 +14,12 @@
 //= require_tree .
 //= require jquery.turbolinks
 
+$(document).ready(function() {
+	$(function() {
+	  window.scrollReveal = new scrollReveal();
+	});
+});
+
 function showEventDetails(event){
     jQuery.ajax({
         data: 'id=' + event.id,
