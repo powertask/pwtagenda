@@ -13,7 +13,7 @@
 </br>
 
 <div class='title_tools'>
-  <a class="btn btn-large btn-warning" <%= link_to('Cadastrar Novo Cliente', new_patient_path, cod: 1) %> </a>
+  <%= link_to('Cadastrar Novo Cliente', new_patient_path, cod: @agenda_item.id, class: "btn btn-large btn-warning") %>
 </div>
 
 <div class='subtitle_page'>
@@ -22,7 +22,6 @@
 <br>
 
 <%= simple_form_for(@agenda_item) do |f| %>
-
   <%= f.association :patient, :label => false, collection: Patient.list(current_user.id).order(:name) %>
   
   <div class='buttonbar'>

@@ -21,6 +21,7 @@ class PatientsController < ApplicationController
 
   def edit
     @patient = Patient.find(params[:id])
+    @patient.unit_id = current_user.id
   end
 
   def create
