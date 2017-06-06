@@ -29,7 +29,7 @@
     })
 
     // Initialize and Configure Scroll Reveal Animation
-    window.sr = ScrollReveal();
+    window.sr = new scrollReveal();
     sr.reveal('.sr-icons', {
         duration: 600,
         scale: 0.3,
