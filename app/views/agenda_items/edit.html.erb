@@ -22,7 +22,7 @@
 <br>
 
 <%= simple_form_for(@agenda_item) do |f| %>
-  <%= f.association :patient, :label => false, collection: Patient.list(current_user.id).order(:name) %>
+  <%= f.association :patient, :label => false, collection: Patient.list(current_user.unit_id).order(:name) %>
   
   <div class='buttonbar'>
     <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>

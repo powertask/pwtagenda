@@ -35,12 +35,6 @@ class DoctorsController < ApplicationController
     respond_with @doctor
   end
 
-  def destroy
-    @doctor = Doctor.find(params[:id])
-    @doctor.destroy
-    respond_with @doctor
-  end
-
   private
 
     def doctor_params
