@@ -9,6 +9,8 @@
   <%= @patient.name %>
   <div class='label1 top req'> <%=t("patient.health_insurance") %>: </div>
   <%= @patient.health_insurance.name %>
+  <div class='label1 top req'> <%=t("patient.health_insurance_doc") %>: </div>
+  <%= @patient.health_insurance_doc %>
   <div class='label1 top req'> <%=t("patient.birthday") %>: </div>
   <%= @patient.birthday.to_s_br %>
   <div class='label1 top req'> <%=t("gender") %>: </div>

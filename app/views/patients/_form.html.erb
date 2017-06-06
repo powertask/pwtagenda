@@ -16,6 +16,7 @@
     <%= f.input :name, label: t('patient.name') %>
     <%= f.input :birthday, as: :string, label: t('patient.birthday') %>
     <%= f.association :health_insurance, label: t('patient.health_insurance'), collection: HealthInsurance.list(current_user.unit_id), :prompt => t('health_insurance.choose') %>
+    <%= f.input :health_insurance_doc, label: t('patient.health_insurance_doc') %>
     <%= f.input :gender, as: :radio_buttons, label: t('gender'), collection: [['Masculino', 'M'],['Feminino', 'F']] %>
     <%= f.input :phone, label: t('phone') %>
     <%= f.input :sms, label: t('sms') %>

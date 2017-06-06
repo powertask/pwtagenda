@@ -30,7 +30,7 @@ class AgendasController < ApplicationController
     events = []
     @agendas.each do |event|
       events << { :id => event.id, 
-                  :title => event.doctor.name + "\n" + event.room.name,
+                  :title => event.doctor.treatment + " " + event.doctor.name + "\n" + event.room.name,
                   :className => 'btn btn-xs btn-primary', 
                   :description => '',
                   :start => "#{event.agenda_date}", 

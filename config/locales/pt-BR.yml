@@ -85,6 +85,7 @@ pt-BR:
 
   patient:
     health_insurance: Plano de Saúde/Convênio do Cliente
+    health_insurance_doc: Documento para Plano de Saúde/Convênio
     birthday: Data de Nascimento
     gender: Sexo
     cns: Carteira Nacional de Saúde

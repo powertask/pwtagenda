@@ -14,7 +14,7 @@
     <% if @agenda %>
       <%= @agenda.agenda_date.to_s_br %>
       &dash;
-      <%= @agenda.doctor.name %>
+      <%= @agenda.doctor.treatment  + " " + @agenda.doctor.name %>
       &dash;
       <%= @agenda.room.name %>
     <% end %>
@@ -61,6 +61,8 @@
           <% end %>
           &bull;
           <%= link_to(agenda_item.patient.name, agenda_item_path(agenda_item)) %>
+          &bull;
+          <%= agenda_item.patient.health_insurance.name %>
           <tt></tt>
           <dt></dt>
         <% end %>
