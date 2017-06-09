@@ -4,7 +4,7 @@ class HealthInsurancesController < ApplicationController
   layout 'window'
 
   def index
-    @health_insurances = HealthInsurance.all.paginate(:page => params[:page], :per_page => 20)
+    @health_insurances = HealthInsurance.list(current_user.unit_id).paginate(:page => params[:page], :per_page => 20)
     respond_with @health_insurances, :layout => 'application'
   end
 
@@ -32,12 +32,6 @@ class HealthInsurancesController < ApplicationController
   def update
     @health_insurance = HealthInsurance.find(params[:id])
     @health_insurance.update_attributes(health_insurance_params)
-    respond_with @health_insurance
-  end
-
-  def destroy
-    @health_insurance = HealthInsurance.find(params[:id])
-    @health_insurance.destroy
     respond_with @health_insurance
   end
 
