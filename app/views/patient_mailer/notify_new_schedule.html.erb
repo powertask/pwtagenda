@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      html {  font-family: sans-serif;
+              -webkit-text-size-adjust: 100%;
+                  -ms-text-size-adjust: 100%;
+      }
+      
+      .label {
+        display: inline;
+        padding: .2em .6em .3em;
+        font-size: 90%;
+        font-weight: bold;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        background-color: #5cb85c;
+      }
+    </style>
+
+  </head>
+  <body>
+    <h1><%= @patient.name %>, você tem um horário agendado.</h1>
+    <p>
+      Informação sobre seu agendamento:
+    </p>
+    <p>Nome: <span class="label"><%= @patient.name %></span></p>
+    <p>
+      Data da consulta: <span class="label"><%= @agenda_item.scheduled_to.to_s_br %> </span> <br>
+    </p>
+    <p>
+      Profissional: <%= @agenda.doctor.treatment + ' ' + @agenda.doctor.name %> <br>
+    </p>
+    <p>
+      Convênio: <%= @patient.health_insurance.name %> <br>
+    </p>
+    <p>
+      Local: <%= @unit.name %>
+    </p>
+    <br>
+    <br>
+    <p>Qualquer dúvida entre em contato!</p>
+    <p><%= @unit.name %></p>
+  </body>
+</html>

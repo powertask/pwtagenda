@@ -44,7 +44,9 @@ class AgendaItemsController < ApplicationController
     @agenda_item = AgendaItem.find(params[:id])
     @agenda_item.status = :marked
     @agenda_item.update_attributes(agenda_item_params)
-    
+
+    PatientMailer.notify_new_schedule(@agenda_item).deliver_later
+
     redirect_to agendas_path
   end
   
