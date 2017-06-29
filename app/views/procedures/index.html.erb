@@ -16,9 +16,18 @@
       </div>
 
       <div class='indent'>
-        <%= link_to(procedure.name, procedure_path(procedure)) %>
-        <tt></tt>
-        <dt></dt>
+        <%= procedure.health_insurance.name %> &bull;
+        <%= procedure.procedure_type.name %> &bull;
+        <%= link_to(procedure.code, procedure_path(procedure)) %>
+        <%= link_to(procedure.name, procedure_path(procedure)) %> &bull;
+        <tt>
+          CHO: <%= procedure.cho.real %> &dash;
+          Participação: <%= procedure.copart_value.real %> &dash;
+          Convênio: <%= procedure.health_insurance_value.real %> &dash;
+          Total: <%= (procedure.copart_value + procedure.health_insurance_value).real %>
+        </tt>
+        <dt>
+        </dt>
       </div>
     </li>
   <% end %>
