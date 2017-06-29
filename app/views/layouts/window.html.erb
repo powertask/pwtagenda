@@ -9,14 +9,17 @@
     </head>
 
     <body>
-        <%= render 'layouts/header' %>
-        <div class='winmodal'>
-            <div id='container'>
-                <%- flash.each do |name, msg| -%>
-                <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-                <%- end -%>
-            </div>
-            <%= yield %>
+  
+      <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %>">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong> <%= value %></strong>
         </div>
+      <% end %>
+  
+      <%= render 'layouts/header' %>
+      <div class='winmodal'>
+        <%= yield %>
+      </div>
     </body>
 </html>

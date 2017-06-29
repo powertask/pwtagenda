@@ -12,10 +12,6 @@ pt-BR:
   user: Usuário
   user_unit: Usuário
 
-
-  # Views -> Comments.
-  #----------------------------------------------------------------------------
-  edit_comment: Editando comentário
   show: Exibir
   update: Salvar Dados
   log_in: Acessar minha conta
@@ -57,7 +53,9 @@ pt-BR:
     room: Locais de Atendimento
     saving: Salvando...
     remove: Apagar
-    patient: Clientes
+    patient: Pacientes
+    procedure_type: Tipos de Procedimentos
+    procedure: Procedimentos
 
   unit:
     edit: Editar Dados da Clínica
@@ -84,19 +82,19 @@ pt-BR:
     choose: Escolher um profissional
 
   patient:
-    health_insurance: Plano de Saúde/Convênio do Cliente
+    health_insurance: Plano de Saúde/Convênio do Paciente
     health_insurance_doc: Documento para Plano de Saúde/Convênio
     birthday: Data de Nascimento
     gender: Sexo
     cns: Carteira Nacional de Saúde
-    title: Cadastro de Clientes
-    new: Incluir Novo Cliente
-    edit: Editar Dados do Cliente
-    index: Listar Todos Clientes
-    create: Criar Cliente
+    title: Cadastro de Pacientes
+    new: Incluir Novo Paciente
+    edit: Editar Dados do Paciente
+    index: Listar Todos Pacientes
+    create: Criar Paciente
     show: Detalhes do Cliente
-    name: Nome do Cliente
-    choose: Selecione um cliente
+    name: Nome do Paciente
+    choose: Selecione um paciente
 
   user:
     show: Detalhes do usuário
@@ -138,6 +136,31 @@ pt-BR:
     show: Detalhes dos Locais de Atendimento
     name: Descrição
     choose: Selecione um local
+
+  procedure_type:
+    title: Cadastro de Tipos de Procedimentos
+    new: Cadastrar Novo Tipo de Procedimento
+    edit: Editar Tipo de Procedimento
+    index: Listar Todas os Tipos de Procedimentos
+    show: Detalhes dos Tipos de Procedimentos
+    name: Descrição
+    choose: Selecione um tipo de procedimento
+
+  procedure:
+    title: Cadastro de Procedimentos
+    new: Cadastrar Novo Procedimento
+    edit: Editar Procedimento
+    index: Listar Todas os Procedimentos
+    show: Detalhes dos Procedimentos
+    name: Descrição
+    choose: Selecione um procedimento
+    health_insurance: Plano de Saúde/Convênio
+    procedure_type: Tipo de Procedimento
+    code: Código do Procedimento no Convênio
+    copart_value: Valor de Participação
+    health_insurance_value: Valor do Convênio
+    cho: CHO
+    total: Valor Total do Procedimento
 
   agenda_item:
     title: Agenda do Dia

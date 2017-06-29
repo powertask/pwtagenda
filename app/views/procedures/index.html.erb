@@ -1,0 +1,31 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('procedure.new'), new_procedure_path) %> </a>
+</div>
+
+<div class='title_page'>
+  <span> <%= t('procedure.title') %> </span>
+</div>
+
+<div class='list1'>
+  <% @procedures.each do |procedure| %>
+    <li>
+      <div class='strip' id='none'> <%= procedure.id %> </div>
+
+      <div class='tools'>
+        <a class="btn btn-xs btn-default" <%= link_to(t('menu.edit'), edit_procedure_path(procedure)) %> </a>
+      </div>
+
+      <div class='indent'>
+        <%= link_to(procedure.name, procedure_path(procedure)) %>
+        <tt></tt>
+        <dt></dt>
+      </div>
+    </li>
+  <% end %>
+</div>
+
+<div id='paginate'>
+  <div class="apple_pagination">
+    <%= will_paginate @procedures, :container => false %>
+  </div>
+</div>

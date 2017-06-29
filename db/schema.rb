@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606140205) do
+ActiveRecord::Schema.define(version: 20170628195314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170606140205) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ipasgo_code", limit: 10
     t.index ["unit_id"], name: "index_doctors_on_unit_id"
   end
 
@@ -83,12 +84,56 @@ ActiveRecord::Schema.define(version: 20170606140205) do
     t.index ["unit_id"], name: "index_patients_on_unit_id"
   end
 
+  create_table "procedure_types", force: :cascade do |t|
+    t.bigint "unit_id"
+    t.bigint "health_insurance_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["health_insurance_id"], name: "index_procedure_types_on_health_insurance_id"
+    t.index ["unit_id"], name: "index_procedure_types_on_unit_id"
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.bigint "unit_id"
+    t.bigint "procedure_type_id"
+    t.bigint "health_insurance_id"
+    t.string "code"
+    t.string "name"
+    t.decimal "copart_value"
+    t.decimal "health_insurance_value"
+    t.decimal "cho"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["health_insurance_id"], name: "index_procedures_on_health_insurance_id"
+    t.index ["procedure_type_id"], name: "index_procedures_on_procedure_type_id"
+    t.index ["unit_id"], name: "index_procedures_on_unit_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.bigint "unit_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["unit_id"], name: "index_rooms_on_unit_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.bigint "unit_id"
+    t.bigint "agenda_item_id"
+    t.bigint "doctor_id"
+    t.bigint "patient_id"
+    t.bigint "health_insurance_id"
+    t.bigint "procedure_id"
+    t.string "auth_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agenda_item_id"], name: "index_tickets_on_agenda_item_id"
+    t.index ["doctor_id"], name: "index_tickets_on_doctor_id"
+    t.index ["health_insurance_id"], name: "index_tickets_on_health_insurance_id"
+    t.index ["patient_id"], name: "index_tickets_on_patient_id"
+    t.index ["procedure_id"], name: "index_tickets_on_procedure_id"
+    t.index ["unit_id"], name: "index_tickets_on_unit_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -137,6 +182,17 @@ ActiveRecord::Schema.define(version: 20170606140205) do
   add_foreign_key "health_insurances", "units"
   add_foreign_key "patients", "health_insurances"
   add_foreign_key "patients", "units"
+  add_foreign_key "procedure_types", "health_insurances"
+  add_foreign_key "procedure_types", "units"
+  add_foreign_key "procedures", "health_insurances"
+  add_foreign_key "procedures", "procedure_types"
+  add_foreign_key "procedures", "units"
   add_foreign_key "rooms", "units"
+  add_foreign_key "tickets", "agenda_items"
+  add_foreign_key "tickets", "doctors"
+  add_foreign_key "tickets", "health_insurances"
+  add_foreign_key "tickets", "patients"
+  add_foreign_key "tickets", "procedures"
+  add_foreign_key "tickets", "units"
   add_foreign_key "users", "units"
 end

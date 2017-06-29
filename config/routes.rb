@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :doctors
   resources :units
   resources :agenda_items
+  resources :procedure_types
+  resources :procedures
 
   resources :agendas do 
     collection do 

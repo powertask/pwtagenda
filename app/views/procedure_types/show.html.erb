@@ -1,0 +1,10 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('procedure_type.index'), procedure_types_path) %> </a>
+</div>
+
+<div class='title_page'> <%= t('procedure_type.show') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("procedure_type.name") %>: </div>
+  <%= @procedure_type.name %>
+</div>

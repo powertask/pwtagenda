@@ -1,0 +1,24 @@
+<div class='title_tools'>
+  <a class="btn btn-large btn-warning" <%= link_to(t('procedure.index'), procedures_path) %> </a>
+</div>
+
+<div class='title_page'> <%= t('procedure.show') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("procedure.health_insurance") %>: </div>
+  <%= @procedure.health_insurance.name %>
+  <div class='label1 top req'> <%=t("procedure.procedure_type") %>: </div>
+  <%= @procedure.procedure_type.name %>
+  <div class='label1 top req'> <%=t("procedure.name") %>: </div>
+  <%= @procedure.name %>
+  <div class='label1 top req'> <%=t("procedure.code") %>: </div>
+  <%= @procedure.code %>
+  <div class='label1 top req'> <%=t("procedure.copart_value") %>: </div>
+  <%= @procedure.copart_value.real %>
+  <div class='label1 top req'> <%=t("procedure.health_insurance_value") %>: </div>
+  <%= @procedure.health_insurance_value.real %>
+  <div class='label1 top req'> <%=t("procedure.total") %>: </div>
+  <%= (@procedure.health_insurance_value + @procedure.copart_value).real %>
+  <div class='label1 top req'> <%=t("procedure.cho") %>: </div>
+  <%= @procedure.cho.real %>
+</div>

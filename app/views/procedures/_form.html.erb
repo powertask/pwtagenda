@@ -1,0 +1,30 @@
+<%= simple_form_for(
+        @procedure,
+        html: { class: 'form-horizontal' }, 
+        wrapper: :horizontal_form,
+        wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean
+      }) do |f| %>
+
+  <%= f.error_notification %>
+
+  <div class='section'>
+    <%= f.input :unit_id, as: :hidden %>
+    <%= f.association :health_insurance, label: t('health_insurance.name'), collection: HealthInsurance.list(current_user.unit_id) %>
+    <%= f.association :procedure_type, label: t('procedure.procedure_type'), collection: ProcedureType.list(current_user.unit_id) %>
+    <%= f.input :name, label: t('procedure.name') %>
+    <%= f.input :code, label: t('procedure.code') %>
+    <%= f.input :copart_value, label: t('procedure.copart_value') %>
+    <%= f.input :health_insurance_value, label: t('procedure.health_insurance_value') %>
+    <%= f.input :cho, label: t('procedure.cho') %>
+  </div>
+
+  <div class='buttonbar'>
+    <%= f.button :submit, t('menu.save'), :disable_with => t('menu.saving'), class: 'btn-primary' %>
+    <%= 'ou' %>
+    <%= link_to t('menu.cancel'), procedures_path %>
+  </div>
+<% end %>

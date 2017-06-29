@@ -47,7 +47,7 @@ class AgendaItemsController < ApplicationController
 
     PatientMailer.notify_new_schedule(@agenda_item).deliver_later
 
-    redirect_to agendas_path
+    redirect_to(agendas_path, notice: 'Agendamento efetuado com sucesso')
   end
   
   def filter
