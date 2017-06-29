@@ -4,7 +4,7 @@ class ProcedureTypesController < ApplicationController
   layout 'window'
 
   def index
-    @procedure_types = ProcedureType.list(current_user).paginate(:page => params[:page], :per_page => 20)
+    @procedure_types = ProcedureType.list(current_user.unit_id).paginate(:page => params[:page], :per_page => 20)
     respond_with @procedure_types, :layout => 'application'
   end
 
