@@ -26,7 +26,7 @@
 
       <div class='tools'>
         <% if agenda_item.attended? %>
-          <span class="label label-success"><%= "Compareceu" %></span>
+          <span class="label label-success"><%= "Consulta Confirmada." %> <%= ticket_number(agenda_item.id) %> </span>
         <% end %>
 
         <% if agenda_item.not_attended? %>
@@ -34,15 +34,11 @@
         <% end %>
 
         <% if agenda_item.marked? %>
-
-          <%= link_to "Compareceu?", {controller: "agenda_items", action: "set_attended_event", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
+          <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
 
           <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, id: 'not_attended_event', class: "btn btn-xs btn-default" %>
 
           <%= link_to "Desmarcar?", {controller: "agenda_items", action: "unset_event", cod: agenda_item.id}, remote: true, id: 'unset_event', class: "btn btn-xs btn-default" %>
-
-          <%= link_to(t('menu.edit'), edit_agenda_item_path(agenda_item), class: "btn btn-xs btn-default") %>
-
         <% end %>       
       </div>
 
@@ -51,7 +47,7 @@
           <% if agenda_item.scheduled_to >= Time.current %>
             <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "label label-success") %>
           <% else %>
-            <span class="label label-info"><%= "Marcação Encerrada" %></span>
+            <span class="label label-default"><%= "Marcação Encerrada" %></span>
           <% end %>
         <% else %>
           <%= agenda_item.id %>
@@ -63,7 +59,16 @@
           <%= link_to(agenda_item.patient.name, agenda_item_path(agenda_item)) %>
           &bull;
           <%= agenda_item.patient.health_insurance.name %>
-          <tt></tt>
+          &bull;
+          <tt>
+            <% if agenda_item.patient.phone.present? %>
+              <%= 'Telefone: '<<agenda_item.patient.phone %>
+              &bull;
+            <% end %>
+            <% if agenda_item.patient.sms.present? %>
+              <%= 'SMS: '<<agenda_item.patient.sms %>
+            <% end %>
+          </tt>
           <dt></dt>
         <% end %>
       </div>

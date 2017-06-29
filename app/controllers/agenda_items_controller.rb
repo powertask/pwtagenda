@@ -41,6 +41,7 @@ class AgendaItemsController < ApplicationController
   end
 
   def update
+    session[:agenda_item_callback] = ''
     @agenda_item = AgendaItem.find(params[:id])
     @agenda_item.status = :marked
     @agenda_item.update_attributes(agenda_item_params)
@@ -67,14 +68,6 @@ class AgendaItemsController < ApplicationController
     end
   end
 
-  def set_attended_event
-    id = params[:cod]
-    agenda_item = AgendaItem.where('id = ?', id)[0]
-    agenda_item.update_column("status", 2)
-
-    redirect_to controller: 'agendas', action: "index", layout: "application"
-  end
-  
   def set_not_attended_event
     id = params[:cod]
     agenda_item = AgendaItem.where('id = ?', id)[0]

@@ -170,12 +170,18 @@ pt-BR:
     show: Detalhes do Agendamento
     remove: Desmarcar
     room: Local de Atendimento
-    patient: Cliente
+    patient: Paciente
     scheduled_to: Hora da Consulta
     not_available: Horário não está disponível.
     not_deleted: Agenda não pode ser deletada. Existem horários com marcações definidas!!
     closed: Marcação Encerrada
     confirm_remove: Confirma desmarcar consulta?
+
+  ticket:
+    new_ticket_from_agenda: Confirma Agenda e Gerar Ticket
+    ticket_date: Data da Confirmação
+    patient: Nome do Paciente
+
 
   will_paginate:
     previous_label: "&#8592; Anterior"

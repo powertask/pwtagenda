@@ -3,8 +3,7 @@ class Procedure < ActiveRecord::Base
   belongs_to :health_insurance
   belongs_to :procedure_type
   
-
-  validates_presence_of :name, :unit_id
+  validates_presence_of :name, :unit_id, :health_insurance_id, :procedure_type_id, :code
 
   def self.list(unit)
     self.where("unit_id = ?", unit).order("name ASC")

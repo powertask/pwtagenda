@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :agenda_items
   resources :procedure_types
   resources :procedures
+  resources :tickets
 
   resources :agendas do 
     collection do 
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
   end
 
   resources :user, :controller => 'users'
+
+  get 'new_ticket_from_agenda/:cod' => 'tickets#new_ticket_from_agenda', as: :new_ticket_from_agenda
+  post 'create_ticket_from_agenda' => 'tickets#create_ticket_from_agenda', as: :create_ticket_from_agenda
 
   get 'set_attended_event/:cod', to: 'agenda_items#set_attended_event', via: [:get, :post]
   get 'set_not_attended_event/:cod', to: 'agenda_items#set_not_attended_event', via: [:get, :post]

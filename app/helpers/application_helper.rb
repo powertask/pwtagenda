@@ -7,6 +7,17 @@ module ApplicationHelper
       when 'info' then "alert alert-info alert-dismissable fade in"
       when 'warning' then "alert alert-warning alert-dismissable fade in"
       when 'danger' then "alert alert-danger alert-dismissable fade in"
+      when 'alert' then "alert alert-danger alert-dismissable fade in"
+    end
+  end
+
+  def ticket_number(agenda_item_id)
+    ticket = Ticket.where('agenda_item_id = ?', agenda_item_id)[0]
+
+    if ticket.present?
+      return 'Gerado ticket n. '<<ticket.id.to_s
+    else
+      return ''
     end
   end
 end

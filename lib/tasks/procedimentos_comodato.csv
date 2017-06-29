@@ -1,0 +1,19 @@
+id, code, name, cho, copart_value, health_insurance_value, total
+01, 79110000, Consulta Inicial, 45, 2.70, 6.30, 9.00
+02, 79209000, Capeamento Pulpar Direto (Dente Permanente), 63, 4.16, 9.70, 13.86
+03, 79501000, Exodontia de dente permanente, 122.40, 8.08, 18.85, 26.93
+04, 79505000, Ulotomia, 102, 6.73, 15.71, 22.44
+05, 79581000, Ulectomia, 102, 6.73, 15.71, 22.44
+06, 79640000, Aplicação de Cariostático p/ elemento, 36, 2.38, 5.54, 7.92
+07, 76680000, Rest. em Ionômero de vidro (1 face), 112.20, 7.41, 17.28, 24.69
+08, 79700000, Coroa de Aço, 204, 13.46, 31.42, 44.88
+09, 79710000, Pulpotomia de dente decíduo, 132, 8.71, 20.33, 29.04 
+10, 79720000, Trat. Endo em decíduo (pulpectomia), 135, 8.91, 20.79, 29.70
+11, 79730000, Exodontia de dente decíduo, 72, 4.75, 11.09, 15.84 
+12, 79910000, Rest. em Amálgama – 01 face, 63, 4.16,  9.70, 13.86
+13, 79920000, Rest. em Amálgama – 02 faces, 90, 5.94, 13.86, 19.80
+14, 79930000, Rest. em Amálgama – 03 faces, 108, 7.13, 16.63, 23.76
+15, 79960000, Rest. em Resina foto – III e V,   102, 6.73,  15.71, 22.44
+16, 79970000, Rest. em Resina foto – Cl II (MO), 117, 7.72, 18.02, 25.74
+17, 79980000, Rest. em Resina foto – Cl IV e II (MOD), 162, 10.69, 24.95, 35.64 
+18, 79990000, Faceta em Resina, 181.82, 12.00, 28.00, 40.00

@@ -5,6 +5,7 @@ class PatientsController < ApplicationController
 
   def index
     @patients = index_class(Patient)
+    session[:agenda_item_callback] = ''
     respond_with @patients, :layout => 'application'
   end
 
@@ -26,10 +27,14 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params)
-    @patient.save
-
-    redirect_to edit_agenda_item_path(session[:agenda_item_callback]) and return if session[:agenda_item_callback]
-
+    
+    if @patient.save
+      if session[:agenda_item_callback].to_i > 0
+        agenda_item_callback = session[:agenda_item_callback]
+        session[:agenda_item_callback] = ''
+        redirect_to edit_agenda_item_path(agenda_item_callback) and return
+      end
+    end      
     respond_with @patient
   end
 
