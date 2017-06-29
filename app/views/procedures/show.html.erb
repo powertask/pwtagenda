@@ -1,5 +1,6 @@
 <div class='title_tools'>
-  <a class="btn btn-large btn-warning" <%= link_to(t('procedure.index'), procedures_path) %> </a>
+  <%= link_to(t('procedure.edit'), edit_procedure_path(@procedure), class: "btn btn-large btn-warning") %>
+  <%= link_to(t('procedure.index'), procedures_path, class: "btn btn-large btn-warning") %>
 </div>
 
 <div class='title_page'> <%= t('procedure.show') %> </div>
