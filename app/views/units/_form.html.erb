@@ -17,8 +17,8 @@
   </div>
 
   <div class='section'>
-    <%= f.input :name, as: :hidden %>
     <%= f.input :cnpj, as: :hidden %>
+    <%= f.input :name, label: 'Nome' %>
     <%= f.input :address, :label => t('address') %>
     <%= f.input :address_complement, :label => t('address_complement') %>
     <%= f.input :neighborhood, :label => t('neighborhood')  %>
