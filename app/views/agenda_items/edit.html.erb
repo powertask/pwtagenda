@@ -9,22 +9,20 @@
   <span class="label label-success"><%= @agenda.doctor.name %></span>
   <div class='label1 top req'> <%=t("agenda.room") %>: </div>
   <%= @agenda.room.name %>
-  <div class='label1 top req'> <%=t("agenda_item.patient") %>: </div>
-  <span class="label label-success"><%= @agenda_item.patient.name %></span>
 </div>
 </br>
 
 <div class='title_tools'>
-  <%= link_to('Cadastrar Novo Cliente', new_patient_path, cod: @agenda_item.id, class: "btn btn-large btn-warning") %>
+  <%= link_to('Cadastrar Novo Paciente', new_patient_path, cod: @agenda_item.id, class: "btn btn-large btn-warning") %>
 </div>
 
 <div class='subtitle_page'>
-  <span> <%= 'Cliente' %> </span>
+  <span> <%= 'Paciente' %> </span>
 </div>
 <br>
 
 <%= simple_form_for(@agenda_item) do |f| %>
-  <%= f.association :patient, :label => false, collection: Patient.list(current_user.unit_id).order(:name) %>
+  <%= f.association :patient, label: 'Nome do Paciente', collection: Patient.list(current_user.unit_id).order(:name) %>
   
   <div class='buttonbar'>
     <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
