@@ -56,7 +56,7 @@
             <a class="btn btn-xs btn-primary"><%= "Encaixe" %></a>
           <% end %>
           &bull;
-          <%= link_to(agenda_item.patient.name, agenda_item_path(agenda_item)) %>
+          <%= link_to(agenda_item.patient.name, patient_path(agenda_item.patient)) %>
           &bull;
           <%= agenda_item.patient.health_insurance.name %>
           &bull;
@@ -69,7 +69,9 @@
               <%= 'SMS: '<<agenda_item.patient.sms %>
             <% end %>
           </tt>
-          <dt></dt>
+          <dt>
+            <%= procedure_name(agenda_item) %>
+          </dt>
         <% end %>
       </div>
     </li>

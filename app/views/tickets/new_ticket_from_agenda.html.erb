@@ -30,8 +30,8 @@
   <%= f.input :agenda_item_id, as: :hidden %>
   <%= f.input :patient_id, as: :hidden %>
   <%= f.association :health_insurance, label: "Convênio/Plano de Saúde do Paciente", collection: HealthInsurance.list(current_user.unit_id).order(:name) %>
-  <%= f.association :procedure, label: "Procedimento executado na consulta", collection: Procedure.list(current_user.unit_id).order(:name) %>
-  <%= f.input :auth_code, label: 'Código de Autorização gerado pelo Convênio/Plano de Saúde' %>
+  <%= f.input :procedure_id, label: "Procedimento executado na consulta", collection: Procedure.list(current_user.unit_id).order(:name), label_method: :name_with_type %>
+  <%= f.input :auth_code, label: 'Código de Autorização do procedimento' %>
 
   <div class='buttonbar'>
     <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>

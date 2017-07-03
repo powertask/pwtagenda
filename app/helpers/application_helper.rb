@@ -20,4 +20,13 @@ module ApplicationHelper
       return ''
     end
   end
+
+  def procedure_name(agenda_item_id)
+    ticket = Ticket.where('agenda_item_id = ?', agenda_item_id)[0]
+
+    if ticket.present?
+      return ticket.procedure_id.present? ? ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name : ''
+    end
+  end
+
 end

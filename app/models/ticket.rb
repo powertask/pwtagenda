@@ -6,7 +6,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :agenda_item
   belongs_to :procedure
 
-  validates_presence_of :unit_id, :doctor_id, :health_insurance, :patient_id, :agenda_item_id, :procedure_id, :auth_code
+  validates_presence_of :unit_id, :doctor_id, :health_insurance, :patient_id, :agenda_item_id, :procedure_id
 
   def self.list(unit)
     self.where("unit_id = ?", unit).order("name ASC")
