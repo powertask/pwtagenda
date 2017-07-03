@@ -65,7 +65,7 @@ class TicketsController < ApplicationController
 
   private
     def ticket_params
-      params.require(:ticket).permit(:unit_id, :agenda_item_id, :health_insurance_id, :doctor_id, :patient_id, :procedure_id, :auth_code)
+      params.require(:ticket).permit(:unit_id, :procedure_description, :agenda_item_id, :health_insurance_id, :doctor_id, :patient_id, :procedure_id, :auth_code)
     end
 
 end

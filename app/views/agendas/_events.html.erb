@@ -32,10 +32,6 @@
             <span class="label label-success"><%= "Consulta Efetivada." %> <%= ticket_number(agenda_item.id) %> </span>
           <% end %>
 
-          <% if agenda_item.not_attended? %>
-            <span class="label label-warning"><%= "Faltou" %></span>
-          <% end %>
-
           <% if agenda_item.marked? %>
             <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
 
@@ -61,12 +57,16 @@
               <a class="btn btn-xs btn-success"><%= "Consulta efetivada" %></a>
               &bull;
             <% end %>
+            <% if agenda_item.not_attended? %>
+              <a class="btn btn-xs btn-warning"><%= "Paciente faltou" %></a>
+              &bull;
+            <% end %>
             <% if agenda_item.unmarked? %>
               <a class="btn btn-xs btn-danger"><%= "Consulta Desmarcada" %></a>
               &bull;
             <% end %>
             <% if agenda_item.extra %>
-              <a class="btn btn-xs btn-warning"><%= "Encaixe" %></a>
+              <a class="btn btn-xs btn-default"><%= "Encaixe" %></a>
               &bull;
             <% end %>
             <%= agenda_item.id %>

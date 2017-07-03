@@ -23,11 +23,19 @@ module ApplicationHelper
 
   def agenda_item_attended_description(agenda_item)
     if agenda_item.attended?
+      
       ticket = Ticket.where('agenda_item_id = ?', agenda_item.id)[0]
-
+      text = ''
+      
       if ticket.present?
-        return ticket.procedure_id.present? ? ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name : ''
+        if ticket.procedure_id.present?
+         text << 'Procedimento: ' << ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name
+       end
+        if ticket.procedure_description.present?
+         text << '  - Descrição: ' << ticket.procedure_description
+        end
       end
+      return text
     end
   end
 
