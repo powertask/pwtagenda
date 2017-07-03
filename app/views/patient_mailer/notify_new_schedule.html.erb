@@ -39,9 +39,18 @@
     <p>
       Convênio: <%= @patient.health_insurance.name %> <br>
     </p>
+    
     <p>
-      Local: <%= @unit.name %>
+      <br>
+      <strong><%= @unit.name %></strong> <br>
+      <%= 'Tel.: '<< @unit.phone if @unit.phone.present? %> <br>
+      <%= 'Endereço: ' << @unit.address if @unit.address.present? %>
+      <%= ' - ' << @unit.address_complement if @unit.address_complement.present? %> <br>
+      <%= @unit.city_name if @unit.city_name.present? %>
+      <%= ' - ' << @unit.state if @unit.state.present? %>
+      <%= ' - ' << @unit.zipcode if @unit.zipcode.present? %>
     </p>
+
     <br>
     <br>
     <p>Qualquer dúvida entre em contato!</p>
