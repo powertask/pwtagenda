@@ -26,8 +26,8 @@ Rails.application.routes.draw do
 
   get 'set_attended_event/:cod', to: 'agenda_items#set_attended_event', via: [:get, :post]
   get 'set_not_attended_event/:cod', to: 'agenda_items#set_not_attended_event', via: [:get, :post]
-  get 'unset_event/:cod', to: 'agenda_items#unset_event', via: [:get, :post]
-  get 'set_new_schedule/:cod', to: 'agenda_items#set_new_schedule', via: [:get, :post]
+  get 'set_unmarked_event/:cod', to: 'agenda_items#set_unmarked_event', as: :set_unmarked_event
+  post 'set_new_event/:cod', to: 'agenda_items#set_new_event', as: :set_new_event
 
   get 'delete_agenda/:cod', to: 'agendas#delete_agenda', via: [:get, :post]
 

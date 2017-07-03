@@ -51,22 +51,6 @@ class AgendaItemsController < ApplicationController
     redirect_to(agendas_path, notice: 'Agendamento efetuado com sucesso')
   end
   
-  def filter
-    @date = params[:agenda_date][:day].gsub(/[\/]/, '')
-    @start_date = Date.new(@date[4,4].to_i, @date[2,2].to_i, @date[0,2].to_i)
-    @end_date = @start_date.to_s << " 23:59:59"
-    @doctor = params[:doctor].to_i
-
-    unless @doctor == 0
-      @agenda_items = AgendaItem.where("unit_id = ? and doctor_id = ? and agenda_date between ? and ?", current_user.unit_id, @doctor, @start_date, @end_date).paginate(:page => params[:page]).order('doctor_id, agenda_date, scheduled_to ASC')
-    else
-      @agenda_items = AgendaItem.where("unit_id = ? and agenda_date between ? and ?", current_user.unit_id, @start_date, @end_date).paginate(:page => params[:page]).order('doctor_id, agenda_date, scheduled_to ASC')
-    end
-
-    respond_to do |format|
-      format.html { render :action => "index", :layout => "application"}
-    end
-  end
 
   def set_not_attended_event
     id = params[:cod]
@@ -77,53 +61,51 @@ class AgendaItemsController < ApplicationController
     redirect_to controller: 'agendas', action: "index", layout: "application"
   end
   
-  def unset_event
+
+  def set_unmarked_event
     @agenda_item = AgendaItem.find params[:cod]
-    @agenda_item.name = nil
-    @agenda_item.phone = nil
-    @agenda_item.patient_id = nil
-    @agenda_item.status = :empty
-    @agenda_item.save
+
+    begin
+      ActiveRecord::Base.transaction do
+        agenda_item = AgendaItem.new
+        agenda_item.unit_id = @agenda_item.unit_id
+        agenda_item.agenda_id = @agenda_item.agenda_id
+        agenda_item.scheduled_to = @agenda_item.scheduled_to
+        agenda_item.status = :empty
+        agenda_item.extra = false
+        agenda_item.save
+
+        @agenda_item.status = :unmarked
+        @agenda_item.save
+      end
+      rescue ActiveRecord::RecordInvalid => e
+        puts e.record.errors.full_messages      
+    end
     redirect_to agendas_path
   end
   
-  def set_new_schedule
-    id = params[:cod]
-    agenda_item = AgendaItem.where('id = ?', id)[0]
-  
-    @agenda_item = AgendaItem.new
-    @agenda_item.schedule_setup_id = agenda_item.schedule_setup_id
-    @agenda_item.room_id = agenda_item.room_id
-    @agenda_item.doctor_id = agenda_item.doctor_id
-    @agenda_item.day_of_month = agenda_item.day_of_month
-    @agenda_item.scheduled_at = agenda_item.scheduled_at
-    
-    respond_with @agenda_item
-    
-  end
-  
-  
+
   private
 
-  def validate_scheduled
-    record = AgendaItem.find(params[:id])
+    def validate_scheduled
+      record = AgendaItem.find(params[:id])
 
-    agenda = Agenda.find(record.agenda_id)
-    agenda_item = AgendaItem.where('unit_id = ? and ' <<
-                              'scheduled_to between ? and ? and ' <<
-                              'patient_id > 0 ',
-                              record.unit_id,
-                              record.scheduled_to,
-                              record.scheduled_to)
+      agenda = Agenda.find(record.agenda_id)
+      agenda_item = AgendaItem.where('unit_id = ? and ' <<
+                                'scheduled_to between ? and ? and ' <<
+                                'patient_id > 0 ',
+                                record.unit_id,
+                                record.scheduled_to,
+                                record.scheduled_to)
 
-    if agenda_item.count > 0 && record.doctor_id != agenda_item[0][:doctor_id]
-      redirect_to agenda_items_path, alert: t('agenda_item.not_available')
+      if agenda_item.count > 0 && record.doctor_id != agenda_item[0][:doctor_id]
+        redirect_to agenda_items_path, alert: t('agenda_item.not_available')
+      end
+
     end
 
-  end
-
-  def agenda_item_params
-    params.require(:agenda_item).permit( :extra, :scheduled_to, :patient_id, :room_id, :doctor_id, :phone, :status, :unit_id, :agenda_id)
-  end
+    def agenda_item_params
+      params.require(:agenda_item).permit( :extra, :scheduled_to, :patient_id, :room_id, :doctor_id, :phone, :status, :unit_id, :agenda_id)
+    end
 
 end

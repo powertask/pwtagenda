@@ -5,7 +5,7 @@ class AgendaItem < ActiveRecord::Base
   
   validates_presence_of :unit_id, :agenda_id
 
-  enum status: [:empty, :marked, :attended, :not_attended]
+  enum status: [:empty, :marked, :attended, :not_attended, :unmarked]
 
   def self.list(unit)
     self.where("unit_id = ?", unit).order("name ASC")

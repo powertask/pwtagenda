@@ -38,23 +38,31 @@
 
           <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, id: 'not_attended_event', class: "btn btn-xs btn-default" %>
 
-          <%= link_to "Desmarcar?", {controller: "agenda_items", action: "unset_event", cod: agenda_item.id}, remote: true, id: 'unset_event', class: "btn btn-xs btn-default" %>
+          <%= link_to("Desmarcar?", set_unmarked_event_path(agenda_item.id), method: :get, remote: true, id: 'set_unmarked_event', class: "btn btn-xs btn-default") %>
         <% end %>       
       </div>
 
       <div class='indent'>
         <% if agenda_item.empty? %>
           <% if agenda_item.scheduled_to >= Time.current %>
-            <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "label label-success") %>
+            <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "btn btn-xs btn-success") %>
           <% else %>
-            <span class="label label-default"><%= "Marcação Encerrada" %></span>
+            <a class="btn btn-xs btn-default"><%= "Marcação Encerrada" %></a>
           <% end %>
         <% else %>
-          <%= agenda_item.id %>
-          <% if agenda_item.extra %>
+          <% if agenda_item.marked? or agenda_item.attended? %>
+            <a class="btn btn-xs btn-success"><%= "Consulta agendada" %></a>
             &bull;
-            <a class="btn btn-xs btn-primary"><%= "Encaixe" %></a>
           <% end %>
+          <% if agenda_item.unmarked? %>
+            <a class="btn btn-xs btn-danger"><%= "Consulta Desmarcada" %></a>
+            &bull;
+          <% end %>
+          <% if agenda_item.extra %>
+            <a class="btn btn-xs btn-warning"><%= "Encaixe" %></a>
+            &bull;
+          <% end %>
+          <%= agenda_item.id %>
           &bull;
           <%= link_to(agenda_item.patient.name, patient_path(agenda_item.patient)) %>
           &bull;
@@ -122,7 +130,7 @@
   });
 
   $(function() {
-    $('.tools #unset_event').click(function (event) {
+    $('.tools #set_unmarked_event').click(function (event) {
       var targetUrl = $(this).attr("href");
       $.confirm({
           title: 'Desmarcar?',
