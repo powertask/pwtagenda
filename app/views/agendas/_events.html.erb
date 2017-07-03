@@ -21,68 +21,77 @@
   </div>
 
   <% @agenda_items.each do |agenda_item| %>
-    <li>
-      <div class="strip-label strip-label-primary"><%= agenda_item.scheduled_to.strftime("%H:%M") %></div>
 
-      <div class='tools'>
-        <% if agenda_item.attended? %>
-          <span class="label label-success"><%= "Consulta Confirmada." %> <%= ticket_number(agenda_item.id) %> </span>
-        <% end %>
+    <% if (not agenda_item.empty?) or (agenda_item.empty? and agenda_item.scheduled_to >= Time.current) %>
 
-        <% if agenda_item.not_attended? %>
-          <span class="label label-warning"><%= "Faltou" %></span>
-        <% end %>
+      <li>
+        <div class="strip-label strip-label-primary"><%= agenda_item.scheduled_to.strftime("%H:%M") %></div>
 
-        <% if agenda_item.marked? %>
-          <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
+        <div class='tools'>
+          <% if agenda_item.attended? %>
+            <span class="label label-success"><%= "Consulta Efetivada." %> <%= ticket_number(agenda_item.id) %> </span>
+          <% end %>
 
-          <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, id: 'not_attended_event', class: "btn btn-xs btn-default" %>
+          <% if agenda_item.not_attended? %>
+            <span class="label label-warning"><%= "Faltou" %></span>
+          <% end %>
 
-          <%= link_to("Desmarcar?", set_unmarked_event_path(agenda_item.id), method: :get, remote: true, id: 'set_unmarked_event', class: "btn btn-xs btn-default") %>
-        <% end %>       
-      </div>
+          <% if agenda_item.marked? %>
+            <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
 
-      <div class='indent'>
-        <% if agenda_item.empty? %>
-          <% if agenda_item.scheduled_to >= Time.current %>
-            <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "btn btn-xs btn-success") %>
+            <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, id: 'not_attended_event', class: "btn btn-xs btn-default" %>
+
+            <%= link_to("Desmarcar?", get_unmarked_event_path(agenda_item.id), method: :get, remote: true, id: 'get_unmarked_event', class: "btn btn-xs btn-default") %>
+          <% end %>       
+        </div>
+
+        <div class='indent'>
+          <% if agenda_item.empty? %>
+            <% if agenda_item.scheduled_to >= Time.current %>
+              <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "btn btn-xs btn-success") %>
+            <% else %>
+              <a class="btn btn-xs btn-default"><%= "Marcação Encerrada" %></a>
+            <% end %>
           <% else %>
-            <a class="btn btn-xs btn-default"><%= "Marcação Encerrada" %></a>
-          <% end %>
-        <% else %>
-          <% if agenda_item.marked? or agenda_item.attended? %>
-            <a class="btn btn-xs btn-success"><%= "Consulta agendada" %></a>
-            &bull;
-          <% end %>
-          <% if agenda_item.unmarked? %>
-            <a class="btn btn-xs btn-danger"><%= "Consulta Desmarcada" %></a>
-            &bull;
-          <% end %>
-          <% if agenda_item.extra %>
-            <a class="btn btn-xs btn-warning"><%= "Encaixe" %></a>
-            &bull;
-          <% end %>
-          <%= agenda_item.id %>
-          &bull;
-          <%= link_to(agenda_item.patient.name, patient_path(agenda_item.patient)) %>
-          &bull;
-          <%= agenda_item.patient.health_insurance.name %>
-          &bull;
-          <tt>
-            <% if agenda_item.patient.phone.present? %>
-              <%= 'Telefone: '<<agenda_item.patient.phone %>
+            <% if agenda_item.marked? %>
+              <a class="btn btn-xs btn-success"><%= "Consulta agendada" %></a>
               &bull;
             <% end %>
-            <% if agenda_item.patient.sms.present? %>
-              <%= 'SMS: '<<agenda_item.patient.sms %>
+            <% if agenda_item.attended? %>
+              <a class="btn btn-xs btn-success"><%= "Consulta efetivada" %></a>
+              &bull;
             <% end %>
-          </tt>
-          <dt>
-            <%= procedure_name(agenda_item) %>
-          </dt>
-        <% end %>
-      </div>
-    </li>
+            <% if agenda_item.unmarked? %>
+              <a class="btn btn-xs btn-danger"><%= "Consulta Desmarcada" %></a>
+              &bull;
+            <% end %>
+            <% if agenda_item.extra %>
+              <a class="btn btn-xs btn-warning"><%= "Encaixe" %></a>
+              &bull;
+            <% end %>
+            <%= agenda_item.id %>
+            &bull;
+            <%= link_to(agenda_item.patient.name, patient_path(agenda_item.patient)) %>
+            &bull;
+            <%= agenda_item.patient.health_insurance.name %>
+            &bull;
+            <tt>
+              <% if agenda_item.patient.phone.present? %>
+                <%= 'Telefone: '<<agenda_item.patient.phone %>
+                &bull;
+              <% end %>
+              <% if agenda_item.patient.sms.present? %>
+                <%= 'SMS: '<<agenda_item.patient.sms %>
+              <% end %>
+            </tt>
+            <dt>
+              <%= agenda_item_attended_description(agenda_item) if agenda_item.attended? %>
+              <%= agenda_item_unmarked_description(agenda_item) if agenda_item.unmarked? %>
+            </dt>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
   <% end %>
 </div>
 
@@ -130,7 +139,7 @@
   });
 
   $(function() {
-    $('.tools #set_unmarked_event').click(function (event) {
+    $('.tools #get_unmarked_event').click(function (event) {
       var targetUrl = $(this).attr("href");
       $.confirm({
           title: 'Desmarcar?',

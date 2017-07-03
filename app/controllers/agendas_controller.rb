@@ -24,6 +24,7 @@ class AgendasController < ApplicationController
     respond_with(@agenda, :layout => 'application')
   end
 
+
   def get_events
     @agendas = Agenda.includes(:room, :doctor).where("unit_id = ?", current_user.unit_id)
 

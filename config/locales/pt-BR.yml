@@ -5,6 +5,8 @@ pt-BR:
   yes_button: 'Sim'
   true: Sim
   false: Não
+  yes: Sim
+  no: Não
 
   admin_pwt: "Admin Powertask"
   admin_unit: Administração
@@ -176,6 +178,7 @@ pt-BR:
     not_deleted: Agenda não pode ser deletada. Existem horários com marcações definidas!!
     closed: Marcação Encerrada
     confirm_remove: Confirma desmarcar consulta?
+    get_unmarked_event: Desmarcar consulta do paciente
 
   ticket:
     new_ticket_from_agenda: Confirma Agenda e Gerar Ticket

@@ -62,8 +62,15 @@ class AgendaItemsController < ApplicationController
   end
   
 
+  def get_unmarked_event
+    @agenda_item = AgendaItem.find(params[:id])
+    @agenda = Agenda.find(@agenda_item.agenda_id)
+    @agenda_item.unmarked_by_patient = false
+  end
+
   def set_unmarked_event
-    @agenda_item = AgendaItem.find params[:cod]
+    @agenda_item = AgendaItem.find params[:id]
+    @agenda_item.update_attributes(agenda_item_params)
 
     begin
       ActiveRecord::Base.transaction do
@@ -73,10 +80,12 @@ class AgendaItemsController < ApplicationController
         agenda_item.scheduled_to = @agenda_item.scheduled_to
         agenda_item.status = :empty
         agenda_item.extra = false
-        agenda_item.save
+        agenda_item.save!
 
         @agenda_item.status = :unmarked
-        @agenda_item.save
+        @agenda_item.unmarked_user_id = current_user.id
+        @agenda_item.unmarked_datetime = Time.current
+        @agenda_item.save!
       end
       rescue ActiveRecord::RecordInvalid => e
         puts e.record.errors.full_messages      
@@ -105,7 +114,7 @@ class AgendaItemsController < ApplicationController
     end
 
     def agenda_item_params
-      params.require(:agenda_item).permit( :extra, :scheduled_to, :patient_id, :room_id, :doctor_id, :phone, :status, :unit_id, :agenda_id)
+      params.require(:agenda_item).permit( :extra, :scheduled_to, :patient_id, :room_id, :doctor_id, :phone, :status, :unit_id, :agenda_id, :unmarked_description, :unmarked_user_id, :unmarked_by_patient, :unmarked_datetime)
     end
 
 end

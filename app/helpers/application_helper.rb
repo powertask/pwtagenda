@@ -21,11 +21,33 @@ module ApplicationHelper
     end
   end
 
-  def procedure_name(agenda_item_id)
-    ticket = Ticket.where('agenda_item_id = ?', agenda_item_id)[0]
+  def agenda_item_attended_description(agenda_item)
+    if agenda_item.attended?
+      ticket = Ticket.where('agenda_item_id = ?', agenda_item.id)[0]
 
-    if ticket.present?
-      return ticket.procedure_id.present? ? ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name : ''
+      if ticket.present?
+        return ticket.procedure_id.present? ? ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name : ''
+      end
+    end
+  end
+
+  def agenda_item_unmarked_description(agenda_item)
+    if agenda_item.unmarked?
+      text = 'Consulta desmarcada ' 
+
+      if agenda_item.unmarked_by_patient
+        text << 'pelo PACIENTE '
+      else
+        text << 'pela CLÍNICA '
+      end
+
+      if agenda_item.unmarked_datetime.present?
+        text << 'em ' << agenda_item.unmarked_datetime.to_s_br
+      end
+
+      if agenda_item.unmarked_description.present?
+        text << ' - Motivo: '<<agenda_item.unmarked_description
+      end
     end
   end
 
