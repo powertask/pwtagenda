@@ -24,7 +24,7 @@
           CHO: <%= procedure.cho.real %> &dash;
           Participação: <%= procedure.copart_value.real %> &dash;
           Convênio: <%= procedure.health_insurance_value.real %> &dash;
-          Total: <%= (procedure.copart_value + procedure.health_insurance_value).real %>
+          Total: <%= ((procedure.copart_value.present? ? procedure.copart_value : 0) + (procedure.health_insurance_value.present? ? procedure.health_insurance_value : 0) ).real %>
         </tt>
         <dt>
         </dt>

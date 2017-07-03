@@ -19,7 +19,7 @@
     <div class='label1 top req'> <%=t("agenda.doctor") %> </div>
     <span class="label label-success"><%= @agenda.doctor.name %></span>
     <div class='label1 top req'> <%=t("agenda.room") %> </div>
-    <%= @agenda.room.name %>
+    <span class="label label-success"><%= @agenda.room.name %></span>
   </div>
   
   <br>
@@ -29,7 +29,7 @@
   <%= f.input :status, as: :hidden %>
   <%= f.input :extra, as: :hidden %>
   <%= f.input :scheduled_to, as: :hour, label: t('agenda_item.scheduled_to') %>
-  <%= f.association :patient, label: t('agenda_item.patient') %>
+  <%= f.association :patient, label: t('agenda_item.patient'), collection: Patient.list(current_user.unit_id) %>
 
   <div class='buttonbar'>
     <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
