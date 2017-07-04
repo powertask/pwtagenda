@@ -9,6 +9,6 @@ class Ticket < ActiveRecord::Base
   validates_presence_of :unit_id, :doctor_id, :health_insurance, :patient_id, :agenda_item_id, :procedure_id
 
   def self.list(unit)
-    self.where("unit_id = ?", unit).order("name ASC")
+    self.where("unit_id = ?", unit).order("created_at DESC")
   end  
 end

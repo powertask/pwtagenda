@@ -1,0 +1,22 @@
+<div class='title_tools'>
+  <%= link_to(t('ticket.index'), tickets_path, class: "btn btn-large btn-warning") %>
+</div>
+
+<div class='title_page'> <%= t('ticket.show') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("id") %>: </div>
+  <%= @ticket.id %>
+  <div class='label1 top req'> <%=t("doctor.name") %>: </div>
+  <%= @ticket.doctor.name %>
+  <div class='label1 top req'> <%=t("ticket.patient") %>: </div>
+  <%= @ticket.patient.name %>
+  <div class='label1 top req'> <%=t("health_insurance.name") %>: </div>
+  <%= @ticket.health_insurance.name %>
+  <div class='label1 top req'> <%=t("ticket.procedure") %>: </div>
+  <%= @ticket.procedure.name %>
+  <div class='label1 top req'> <%=t("ticket.procedure_description") %>: </div>
+  <%= @ticket.procedure_description %>
+  <div class='label1 top req'> <%=t("ticket.auth_code") %>: </div>
+  <%= @ticket.auth_code %>
+</div>

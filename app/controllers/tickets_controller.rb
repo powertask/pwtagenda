@@ -4,12 +4,12 @@ class TicketsController < ApplicationController
   layout 'window'
 
   def index
-    @tickets = index_class(Ticket)
+    @tickets = Ticket.list(current_user.unit_id).paginate(:page => params[:page], :per_page => 20)
     respond_with @tickets, :layout => 'application'
   end
 
   def show
-    @ticket = ticket.find(params[:id])
+    @ticket = Ticket.find(params[:id])
     respond_with @ticket
   end
 
@@ -32,7 +32,7 @@ class TicketsController < ApplicationController
   def update
     @ticket = Ticket.find(params[:id])
     @ticket.update_attributes(ticket_params)
-    redirect_to(root_path)
+    respond_with @ticket
   end
 
 

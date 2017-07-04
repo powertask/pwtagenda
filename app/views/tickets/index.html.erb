@@ -1,0 +1,37 @@
+<div class='title_page'>
+  <span> <%= t('ticket.title') %> </span>
+</div>
+
+<div class='list1'>
+  <% @tickets.each do |ticket| %>
+    <li>
+      <div class='strip' id='none'> <%= ticket.id %> </div>
+
+      <div class='tools'>
+        <%= link_to(t('menu.edit'), edit_ticket_path(ticket), class: "btn btn-xs btn-default") %>
+      </div>
+
+      <div class='indent'>
+        <%= link_to(ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name, ticket_path(ticket)) %>
+        &bull;
+        <%= link_to(ticket.patient.name, patient_path(ticket.patient_id)) %>
+        &bull;
+        <%= ticket.created_at.to_s_br %>
+        &bull;
+        <%= ticket.health_insurance.name %>
+        &bull;
+        <tt>
+        </tt>
+        <dt>
+          <%= ticket.procedure_description %>          
+        </dt>
+      </div>
+    </li>
+  <% end %>
+</div>
+
+<div id='paginate'>
+  <div class="apple_pagination">
+    <%= will_paginate @tickets, :container => false %>
+  </div>
+</div>

@@ -58,6 +58,7 @@ pt-BR:
     patient: Pacientes
     procedure_type: Tipos de Procedimentos
     procedure: Procedimentos
+    ticket: Consultas
 
   unit:
     edit: Editar Dados da Clínica
@@ -185,7 +186,12 @@ pt-BR:
     ticket_date: Data da Confirmação
     patient: Nome do Paciente
     edit: Editar Dados da Consulta Efetivada
-
+    title: Cadastro de Consultas Efetivadas
+    show: Detalhe da Consulta Efetivada
+    index: Listar Todas as Consultas Efetivadas
+    procedure: Procedimento efetivado
+    procedure_description: Descrição do Procedimento
+    auth_code: Código de Autorização
 
   will_paginate:
     previous_label: "&#8592; Anterior"
