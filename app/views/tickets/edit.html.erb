@@ -1,0 +1,37 @@
+<div class='title'> <%= t('ticket.edit') %> </div>
+
+<div class='section'>
+  <div class='label1 top req'> <%=t("ticket.ticket_date") %>: </div>
+  <span class="label label-success"><%= @ticket.created_at.to_s_br %></span>
+  <div class='label1 top req'> <%=t("doctor.name") %>: </div>
+  <span class="label label-success"><%= @ticket.doctor.name %></span>
+  <div class='label1 top req'> <%=t("ticket.patient") %>: </div>
+  <span class="label label-success"><%= @ticket.patient.name %></span>
+</div>
+</br>
+<br>
+
+<%= simple_form_for(
+    @ticket,
+    html: { class: 'form-horizontal' }, 
+            wrapper: :horizontal_form,
+            wrapper_mappings: {
+            check_boxes: :horizontal_radio_and_checkboxes,
+            radio_buttons: :horizontal_radio_and_checkboxes,
+            file: :horizontal_file_input,
+            boolean: :horizontal_boolean
+          }) do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= f.association :health_insurance, label: "Convênio/Plano de Saúde do Paciente", collection: HealthInsurance.list(current_user.unit_id).order(:name) %>
+  <%= f.input :procedure_id, label: "Procedimento executado na consulta", collection: Procedure.list(current_user.unit_id).order(:name), label_method: :name_with_type %>
+  <%= f.input :procedure_description, label: 'Descrição do procedimento' %>
+  <%= f.input :auth_code, label: 'Código de Autorização do procedimento' %>
+
+  <div class='buttonbar'>
+    <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
+    <%= 'ou' %>
+    <%= link_to t('menu.cancel'), root_path %>
+  </div>
+<% end %>

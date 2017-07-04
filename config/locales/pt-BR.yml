@@ -184,6 +184,7 @@ pt-BR:
     new_ticket_from_agenda: Confirma Agenda e Gerar Ticket
     ticket_date: Data da Confirmação
     patient: Nome do Paciente
+    edit: Editar Dados da Consulta Efetivada
 
 
   will_paginate:

@@ -14,12 +14,12 @@ class TicketsController < ApplicationController
   end
 
   def new
-    @ticket = ticket.new
+    @ticket = Ticket.new
     respond_with @ticket
   end
 
   def edit
-    @ticket = ticket.find(params[:id])
+    @ticket = Ticket.find(params[:id])
   end
 
   def create
@@ -30,9 +30,9 @@ class TicketsController < ApplicationController
   end
 
   def update
-    @ticket = ticket.find(params[:id])
+    @ticket = Ticket.find(params[:id])
     @ticket.update_attributes(ticket_params)
-    respond_with @ticket
+    redirect_to(root_path)
   end
 
 

@@ -11,6 +11,11 @@ module ApplicationHelper
     end
   end
 
+  def ticket_id(agenda_item_id)
+    ticket_id = Ticket.select(:id).where('agenda_item_id = ?', agenda_item_id)[0]
+  end
+
+
   def ticket_number(agenda_item_id)
     ticket = Ticket.where('agenda_item_id = ?', agenda_item_id)[0]
 
@@ -29,10 +34,10 @@ module ApplicationHelper
       
       if ticket.present?
         if ticket.procedure_id.present?
-         text << 'Procedimento: ' << ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name
+         text << ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name
        end
         if ticket.procedure_description.present?
-         text << '  - Descrição: ' << ticket.procedure_description
+         text << ' - ' << ticket.procedure_description
         end
       end
       return text

@@ -29,6 +29,7 @@
 
         <div class='tools'>
           <% if agenda_item.attended? %>
+            <%= link_to "Editar Dados da consulta", edit_ticket_path(ticket_id(agenda_item.id)), class: "btn btn-xs btn-default" %>
             <span class="label label-success"><%= "Consulta Efetivada." %> <%= ticket_number(agenda_item.id) %> </span>
           <% end %>
 
