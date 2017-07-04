@@ -5,7 +5,7 @@ class PatientMailer < ApplicationMailer
     @agenda = Agenda.find(agenda_item.agenda_id)
     @patient = Patient.find(agenda_item.patient_id)
     @unit = Unit.find(agenda_item.unit_id)
-    mail(to: @patient.email, subject: @unit.name + ' - Você tem uma nova consulta agendada conosco!')
+    mail(from: @unit.email, to: @patient.email, bcc: @unit.email, subject: @unit.name + ' - Você tem uma nova consulta agendada conosco!')
   end
 
   def notify_next_schedule(agenda_item, status)
@@ -19,7 +19,7 @@ class PatientMailer < ApplicationMailer
     subject = @unit.name + ' - Sua consulta é AMANHÃ!' if status == 1
     subject = @unit.name + ' - Sua consulta está próxima' if status == 2
 
-    mail(to: @patient.email, subject: subject)
+    mail(from: @unit.email, to: @patient.email, bcc: @unit.email, subject: subject)
   end
 
 end

@@ -1,6 +1,6 @@
 class Unit < ActiveRecord::Base
   
-  validates_presence_of :name
+  validates_presence_of :name, :email
 
   usar_como_cnpj :cnpj
 
