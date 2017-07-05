@@ -85,7 +85,22 @@
               <% end %>
             </tt>
             <dt>
-              <%= agenda_item_attended_description(agenda_item) if agenda_item.attended? %>
+              <% if agenda_item.attended? %>
+                <% text1 = agenda_item_attended_description(ticket_id(agenda_item.id), 1) %>
+                <% text2 = agenda_item_attended_description(ticket_id(agenda_item.id), 2) %>
+                <% text3 = agenda_item_attended_description(ticket_id(agenda_item.id), 3) %>
+                <% if text1.present? %>
+                  <%= text1 %>
+                  <br>
+                <% end %>
+                <% if text2.present? %>
+                  <%= text2 %>
+                  <br>
+                <% end %>
+                <% if text3.present? %>
+                  <%= text3 %>
+                <% end %>
+              <% end %> 
               <%= agenda_item_unmarked_description(agenda_item) if agenda_item.unmarked? %>
             </dt>
           <% end %>

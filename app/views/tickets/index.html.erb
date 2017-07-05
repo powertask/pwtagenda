@@ -12,18 +12,29 @@
       </div>
 
       <div class='indent'>
-        <%= link_to(ticket.procedure.procedure_type.name << ' - ' <<ticket.procedure.name, ticket_path(ticket)) %>
-        &bull;
-        <%= link_to(ticket.patient.name, patient_path(ticket.patient_id)) %>
+        <%= link_to(ticket.patient.name, patient_path(ticket.patient_id), class: "btn btn-xs btn-success") %>      
         &bull;
         <%= ticket.created_at.to_s_br %>
         &bull;
         <%= ticket.health_insurance.name %>
-        &bull;
+
         <tt>
         </tt>
         <dt>
-          <%= ticket.procedure_description %>          
+          <% text1 = agenda_item_attended_description(ticket.id, 1) %>
+          <% text2 = agenda_item_attended_description(ticket.id, 2) %>
+          <% text3 = agenda_item_attended_description(ticket.id, 3) %>
+          <% if text1.present? %>
+            <%= text1 %>
+            <br>
+          <% end %>
+          <% if text2.present? %>
+            <%= text2 %>
+            <br>
+          <% end %>
+          <% if text3.present? %>
+            <%= text3 %>
+          <% end %>
         </dt>
       </div>
     </li>

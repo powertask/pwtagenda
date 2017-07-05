@@ -95,7 +95,7 @@ pt-BR:
     edit: Editar Dados do Paciente
     index: Listar Todos Pacientes
     create: Criar Paciente
-    show: Detalhes do Cliente
+    show: Detalhes do Paciente
     name: Nome do Paciente
     choose: Selecione um paciente
 
@@ -182,7 +182,7 @@ pt-BR:
     get_unmarked_event: Desmarcar consulta do paciente
 
   ticket:
-    new_ticket_from_agenda: Confirma Agenda e Gerar Ticket
+    new_ticket_from_agenda: Confirmar Agenda e Efetivar Consulta
     ticket_date: Data da Confirmação
     patient: Nome do Paciente
     edit: Editar Dados da Consulta Efetivada

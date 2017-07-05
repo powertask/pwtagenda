@@ -13,10 +13,29 @@
   <%= @ticket.patient.name %>
   <div class='label1 top req'> <%=t("health_insurance.name") %>: </div>
   <%= @ticket.health_insurance.name %>
+
+  <div class='subtitle'> <%= 'Detalhes do Procedimento 1' %> </div>
   <div class='label1 top req'> <%=t("ticket.procedure") %>: </div>
-  <%= @ticket.procedure.name %>
+  <%= @ticket.procedure.name if @ticket.procedure %>
   <div class='label1 top req'> <%=t("ticket.procedure_description") %>: </div>
   <%= @ticket.procedure_description %>
   <div class='label1 top req'> <%=t("ticket.auth_code") %>: </div>
   <%= @ticket.auth_code %>
+
+  <div class='subtitle'> <%= 'Detalhes do Procedimento 2' %> </div>
+  <div class='label1 top req'> <%=t("ticket.procedure") %>: </div>
+  <%= @ticket.procedure_2.name if @ticket.procedure_2_id %>
+  <div class='label1 top req'> <%=t("ticket.procedure_description") %>: </div>
+  <%= @ticket.procedure_description_2 %>
+  <div class='label1 top req'> <%=t("ticket.auth_code") %>: </div>
+  <%= @ticket.auth_code_2 %>
+
+  <div class='subtitle'> <%= 'Detalhes do Procedimento 3' %> </div>
+  <div class='label1 top req'> <%=t("ticket.procedure") %>: </div>
+  <%= @ticket.procedure_3.name if @ticket.procedure_3_id %>
+  <div class='label1 top req'> <%=t("ticket.procedure_description") %>: </div>
+  <%= @ticket.procedure_description_3 %>
+  <div class='label1 top req'> <%=t("ticket.auth_code") %>: </div>
+  <%= @ticket.auth_code_3 %>
+
 </div>

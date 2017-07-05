@@ -23,9 +23,27 @@
   <%= f.error_notification %>
 
   <%= f.association :health_insurance, label: "Convênio/Plano de Saúde do Paciente", collection: HealthInsurance.list(current_user.unit_id).order(:name) %>
-  <%= f.input :procedure_id, label: "Procedimento executado na consulta", collection: Procedure.list(current_user.unit_id).order(:name), label_method: :name_with_type %>
-  <%= f.input :procedure_description, label: 'Descrição do procedimento' %>
-  <%= f.input :auth_code, label: 'Código de Autorização do procedimento' %>
+
+  <div id='form_procedure_1'>
+    <div class='subtitle'> Procedimento 1 </div><br> 
+    <%= f.input :procedure_id, label: "Procedimento executado na consulta", collection: Procedure.list(current_user.unit_id).order(:name), label_method: :name_with_type %>
+    <%= f.input :procedure_description, label: 'Descrição do procedimento' %>
+    <%= f.input :auth_code, label: 'Código de Autorização do procedimento' %>
+  </div>
+
+  <div id='form_procedure_2'>
+    <div class='subtitle'> Procedimento 2 </div><br>
+    <%= f.input :procedure_2_id, label: "Procedimento executado na consulta", collection: Procedure.list(current_user.unit_id).order(:name), label_method: :name_with_type %>
+    <%= f.input :procedure_description_2, label: 'Descrição do procedimento' %>
+    <%= f.input :auth_code_2, label: 'Código de Autorização do procedimento' %>
+  </div>
+
+  <div id='form_procedure_3'>
+    <div class='subtitle'> Procedimento 3 </div><br>
+    <%= f.input :procedure_3_id, label: "Procedimento executado na consulta", collection: Procedure.list(current_user.unit_id).order(:name), label_method: :name_with_type %>
+    <%= f.input :procedure_description_3, label: 'Descrição do procedimento' %>
+    <%= f.input :auth_code_3, label: 'Código de Autorização do procedimento' %>
+  </div>
 
   <div class='buttonbar'>
     <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
@@ -33,3 +51,4 @@
     <%= link_to t('menu.cancel'), root_path %>
   </div>
 <% end %>
+
