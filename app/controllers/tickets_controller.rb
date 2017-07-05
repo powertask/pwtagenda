@@ -47,6 +47,7 @@ class TicketsController < ApplicationController
     @ticket.doctor_id = agenda.doctor_id
     @ticket.patient_id = agenda_item.patient_id
     @ticket.created_at = Time.current
+    
   end
 
   def create_ticket_from_agenda
