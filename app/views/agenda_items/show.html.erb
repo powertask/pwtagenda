@@ -6,14 +6,14 @@
 
 <div class='section'>
   <div class='label1 top req'> <%=t("agenda.agenda_date") %>: </div>
-  <span class="label label-success"><%= @agenda.agenda_date.to_s_br %></span>
-  <div class='label1 top req'> <%=t("agenda.scheduled_to") %>: </div>
-  <span class="label label-success"><%= @agenda.scheduled_to.strftime("%H:%M") %></span>
+  <span class="label label-success"><%= @agenda_item.scheduled_to.to_date.to_s_br %></span>
+  <div class='label1 top req'> <%=t("agenda_item.scheduled_to") %>: </div>
+  <span class="label label-success"><%= @agenda_item.scheduled_to.strftime("%H:%M") %></span>
   <div class='label1 top req'> <%=t("agenda.doctor") %>: </div>
-  <span class="label label-success"><%= @agenda.doctor.name %></span>
+  <span class="label label-success"><%= doctor_name_from_agenda(@agenda_item.agenda_id) %></span>
   <div class='label1 top req'> <%=t("agenda.room") %>: </div>
-  <%= @agenda.room.name %>
+  <%= room_name_from_agenda(@agenda_item.agenda_id) %>
   <div class='label1 top req'> <%=t("agenda_item.patient") %>: </div>
-  <%= @agenda_item.patient.name unless @agenda_item.patient.nil? %>
+  <%= link_to(@agenda_item.patient.name, patient_path(@agenda_item.patient_id)) unless @agenda_item.patient.nil? %>
 </div>
 

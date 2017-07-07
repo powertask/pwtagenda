@@ -4,21 +4,133 @@
 
 <div class='title_page'> <%= t('patient.show') %> </div>
 
-<div class='section'>
-  <div class='label1 top req'> <%=t("patient.name") %>: </div>
-  <%= @patient.name %>
-  <div class='label1 top req'> <%=t("patient.health_insurance") %>: </div>
-  <%= @patient.health_insurance.name %>
-  <div class='label1 top req'> <%=t("patient.health_insurance_doc") %>: </div>
-  <%= @patient.health_insurance_doc %>
-  <div class='label1 top req'> <%=t("patient.birthday") %>: </div>
-  <%= @patient.birthday.to_s_br %>
-  <div class='label1 top req'> <%=t("gender") %>: </div>
-  <%= @patient.gender == "M" ? "Masculino" : "Feminino" %>
-  <div class='label1 top req'> <%=t("phone") %>: </div>
-  <%= @patient.phone %>
-  <div class='label1 top req'> <%=t("sms") %>: </div>
-  <%= @patient.sms %>
-  <div class='label1 top req'> <%=t("email") %>: </div>
-  <%= @patient.email %>
+<div class="row marketing">
+  <div class="col-sm-6 col-md-3">
+    <div class='subtitle_page'> <%= 'Dados do Paciente' %> </div>
+    <div class='section'>
+      <div class='label1 top req'> <%=t("patient.name") %>: </div>
+      <%= @patient.name %>
+      <div class='label1 top req'> <%=t("patient.health_insurance") %>: </div>
+      <%= @patient.health_insurance.name %>
+      <div class='label1 top req'> <%=t("patient.health_insurance_doc") %>: </div>
+      <%= @patient.health_insurance_doc %>
+      <div class='label1 top req'> <%=t("patient.birthday") %>: </div>
+      <%= @patient.birthday.to_s_br %>
+      <div class='label1 top req'> <%=t("gender") %>: </div>
+      <%= @patient.gender == "M" ? "Masculino" : "Feminino" %>
+      <div class='label1 top req'> <%=t("phone") %>: </div>
+      <%= @patient.phone %>
+      <div class='label1 top req'> <%=t("sms") %>: </div>
+      <%= @patient.sms %>
+      <div class='label1 top req'> <%=t("email") %>: </div>
+      <%= @patient.email %>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-md-9">
+    <div class='subtitle_page'> <%= 'Consultas - Procedimentos' %> </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Data Agendamento</th>
+          <th>Profissional</th>
+          <th>Convênio</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td>
+              <%= link_to(ticket.id, ticket_path(ticket.id)) %>
+            </td>
+            <td>
+              <%= ticket.agenda_item.scheduled_to.to_s_br %>
+            </td>
+            <td>
+              <%= ticket.doctor.name %>
+            </td>
+            <td>
+              <%= ticket.health_insurance.name %>
+            </td>
+            <td>
+              <% text1 = agenda_item_attended_description(ticket.id, 1) %>
+              <% text2 = agenda_item_attended_description(ticket.id, 2) %>
+              <% text3 = agenda_item_attended_description(ticket.id, 3) %>
+              <% if text1.present? %>
+                <%= text1 %>
+                <br>
+              <% end %>
+              <% if text2.present? %>
+                <%= text2 %>
+                <br>
+              <% end %>
+              <% if text3.present? %>
+                <%= text3 %>
+              <% end %>              
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+    <div class='subtitle_page'> <%= 'Agendamentos Feitos' %> </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Data Agendamento</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @agenda_items.each do |agenda_item| %>
+          <tr>
+            <td>
+              <%= link_to(agenda_item.id, agenda_item_path(agenda_item.id)) %>
+            </td>
+
+            <td>
+              <%= agenda_item.scheduled_to.to_s_br %>
+            </td>
+
+            <td>
+              <% if agenda_item.marked? %>
+                <a class="btn btn-xs btn-info"><%= "Consulta agendada" %></a>
+              <% elsif agenda_item.attended? %>
+                <a class="btn btn-xs btn-success"><%= "Consulta efetivada" %></a>
+              <% elsif agenda_item.not_attended? %>
+                <a class="btn btn-xs btn-danger"><%= "Paciente faltou" %></a>
+              <% elsif agenda_item.unmarked? %>
+                <a class="btn btn-xs btn-warning"><%= "Consulta Desmarcada" %></a>
+              <% else %>
+                <a class="btn btn-xs btn-default"><%= "Indefinido" %></a>
+              <% end %>
+              <% if agenda_item.extra %>
+                <a class="btn btn-xs btn-default"><%= "Encaixe" %></a>
+              <% end %>
+            </td>
+
+            <td>
+              <% if agenda_item.attended? %>
+                <%= link_to "Editar Consulta", edit_ticket_path(ticket_id(agenda_item.id)), class: "btn btn-xs btn-default" %>
+              <% end %>
+
+              <% if agenda_item.marked? %>
+                <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
+
+                <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, id: 'not_attended_event', class: "btn btn-xs btn-default" %>
+
+                <%= link_to("Desmarcar?", get_unmarked_event_path(agenda_item.id), method: :get, remote: true, id: 'get_unmarked_event', class: "btn btn-xs btn-default") %>
+              <% end %>
+              <%= agenda_item_unmarked_description(agenda_item) if agenda_item.unmarked? %>       
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

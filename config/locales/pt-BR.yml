@@ -122,7 +122,7 @@ pt-BR:
     name: Descrição
     room: Local de Atendimento
     doctor: Profissional
-    agenda_date: Data do Agendamento
+    agenda_date: Data da Consulta
     start_at: Hora Inicial
     end_at: Hora Final
     interval: Tempo em MINUTOS dos atendimentos
@@ -180,6 +180,7 @@ pt-BR:
     closed: Marcação Encerrada
     confirm_remove: Confirma desmarcar consulta?
     get_unmarked_event: Desmarcar consulta do paciente
+    id: ID do Agendamento
 
   ticket:
     new_ticket_from_agenda: Confirmar Agenda e Efetivar Consulta
@@ -192,6 +193,7 @@ pt-BR:
     procedure: Procedimento efetivado
     procedure_description: Descrição do Procedimento
     auth_code: Código de Autorização
+    id: ID da Consulta
 
   will_paginate:
     previous_label: "&#8592; Anterior"

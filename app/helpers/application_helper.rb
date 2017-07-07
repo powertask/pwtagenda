@@ -86,4 +86,13 @@ module ApplicationHelper
     end
   end
 
+  def doctor_name_from_agenda(agenda_id)
+    Agenda.find(agenda_id).doctor.name
+  end
+
+  def room_name_from_agenda(agenda_id)
+    Agenda.find(agenda_id).room.name
+  end
+
+
 end

@@ -10,7 +10,7 @@
   <div class='label1 top req'> <%=t("doctor.name") %>: </div>
   <%= @ticket.doctor.name %>
   <div class='label1 top req'> <%=t("ticket.patient") %>: </div>
-  <%= @ticket.patient.name %>
+  <%= link_to(@ticket.patient.name, patient_path(@ticket.patient_id)) %>
   <div class='label1 top req'> <%=t("health_insurance.name") %>: </div>
   <%= @ticket.health_insurance.name %>
 

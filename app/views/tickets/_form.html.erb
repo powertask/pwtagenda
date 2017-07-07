@@ -1,10 +1,14 @@
 <div class='section'>
+  <div class='label1 top req'> <%=t("ticket.id") %>: </div>
+  <span><%= @ticket.id %></span>
+  <div class='label1 top req'> <%=t("agenda_item.id") %>: </div>
+  <span><%= @ticket.agenda_item.id %></span>
   <div class='label1 top req'> <%=t("ticket.ticket_date") %>: </div>
   <span class="label label-success"><%= @ticket.created_at.to_s_br %></span>
   <div class='label1 top req'> <%=t("doctor.name") %>: </div>
   <span class="label label-success"><%= @ticket.doctor.name %></span>
   <div class='label1 top req'> <%=t("ticket.patient") %>: </div>
-  <span class="label label-success"><%= @ticket.patient.name %></span>
+  <span class="label label-success"><%= link_to(@ticket.patient.name, patient_path(@ticket.patient_id)) %></span>
 </div>
 </br>
 <br>

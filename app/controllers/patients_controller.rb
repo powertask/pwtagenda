@@ -11,6 +11,10 @@ class PatientsController < ApplicationController
 
   def show
     @patient = Patient.find(params[:id])
+    
+    @agenda_items = AgendaItem.list(current_user.unit_id).where('patient_id = ?', @patient.id).order('scheduled_to DESC')
+    @tickets = Ticket.joins(:agenda_item).list(current_user.unit_id).where('tickets.patient_id = ?', @patient.id).order('scheduled_to DESC')
+
     respond_with @patient
   end
 
