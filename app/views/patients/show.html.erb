@@ -1,5 +1,6 @@
 <div class='title_tools'>
-  <a class="btn btn-large btn-warning" <%= link_to(t('patient.index'), patients_path) %> </a>
+  <%= link_to(t('patient.index'), patients_path, class: "btn btn-large btn-warning") %>
+  <%= link_to(t('patient.index'), edit_patient_path(@patient), class: "btn btn-large btn-warning") %>
 </div>
 
 <div class='title_page'> <%= t('patient.show') %> </div>
