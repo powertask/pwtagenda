@@ -44,7 +44,7 @@
         <div class='indent'>
           <% if agenda_item.empty? %>
             <% if agenda_item.scheduled_to >= Time.current %>
-              <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "btn btn-xs btn-success") %>
+              <%= link_to(t('agenda_item.edit'), edit_agenda_item_path(agenda_item), class: "btn btn-xs btn-default") %>
             <% else %>
               <a class="btn btn-xs btn-default"><%= "Marcação Encerrada" %></a>
             <% end %>
@@ -58,11 +58,11 @@
               &bull;
             <% end %>
             <% if agenda_item.not_attended? %>
-              <a class="btn btn-xs btn-warning"><%= "Paciente faltou" %></a>
+              <a class="btn btn-xs btn-danger"><%= "Paciente faltou" %></a>
               &bull;
             <% end %>
             <% if agenda_item.unmarked? %>
-              <a class="btn btn-xs btn-danger"><%= "Consulta Desmarcada" %></a>
+              <a class="btn btn-xs btn-warning"><%= "Consulta Desmarcada" %></a>
               &bull;
             <% end %>
             <% if agenda_item.extra %>
