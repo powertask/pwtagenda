@@ -3,7 +3,6 @@
 //= require jquery-ui
 //= require tether
 //= require moment 
-//= require magnific-popup
 //= require fullcalendar
 //= require bootstrap
 //= require rails-ujs

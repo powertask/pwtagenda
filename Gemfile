@@ -27,7 +27,6 @@ gem 'brazilian-rails'
 gem 'will_paginate'
 
 gem "font-awesome-rails"
-gem 'magnific-popup-rails', '~> 1.1.0'
 gem "scrollreveal-rails"
 
 source 'https://rails-assets.org' do
