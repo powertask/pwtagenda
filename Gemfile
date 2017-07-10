@@ -28,6 +28,7 @@ gem 'will_paginate'
 
 gem "font-awesome-rails"
 gem "scrollreveal-rails"
+gem "magnific-popup-rails"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

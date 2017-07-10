@@ -7,6 +7,7 @@
 //= require bootstrap
 //= require rails-ujs
 //= require scrollReveal
+//= require magnific-popup
 //= require creative
 //= require powertask 
 //= require turbolinks
