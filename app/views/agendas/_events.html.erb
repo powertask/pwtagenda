@@ -33,11 +33,11 @@
           <% end %>
 
           <% if agenda_item.marked? %>
-            <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, id: 'attended_event', class: "btn btn-xs btn-default" %>
+            <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, data: {confirm: 'Deseja efetivar a consulta'}, class: "btn btn-xs btn-default" %>
 
-            <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, id: 'not_attended_event', class: "btn btn-xs btn-default" %>
+            <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, data: {confirm: 'Deseja marcar a FALTA na consulta?'}, class: "btn btn-xs btn-default" %>
 
-            <%= link_to("Desmarcar?", get_unmarked_event_path(agenda_item.id), method: :get, remote: true, id: 'get_unmarked_event', class: "btn btn-xs btn-default") %>
+            <%= link_to("Desmarcar?", get_unmarked_event_path(agenda_item.id), method: :get, remote: true, data: {Confirm: 'Deseja DESMARCAR a consulta?'}, class: "btn btn-xs btn-default") %>
           <% end %>       
         </div>
 
@@ -112,12 +112,13 @@
 
 
 <script type="text/javascript">
+
   $(function() {
-    $('#attended_event').click(function (event) {
+    $('#delete_agenda').click(function (event) {
       var targetUrl = $(this).attr("href");
       $.confirm({
-          title: 'Compareceu?',
-          content: 'Marcar comparecimemto na hora marcada',
+          title: 'Deletar agenda?',
+          content: 'Deseja deletar a agenda criada?',
         confirmButton: 'Sim',
         cancelButton: 'Cancelar',
         confirmButtonClass: 'btn-danger',
@@ -132,68 +133,5 @@
       return false;
     });
   });
-
-  $(function() {
-    $('#not_attended_event').click(function (event) {
-      var targetUrl = $(this).attr("href");
-      $.confirm({
-          title: 'Faltou?',
-          content: 'Deseja marcar a falta na hora marcada?',
-        confirmButton: 'Sim',
-        cancelButton: 'Cancelar',
-        confirmButtonClass: 'btn-danger',
-        theme: 'supervan',
-          confirm: function(){
-              window.location.href = targetUrl;
-          },
-          cancel: function(){
-
-          }
-      });
-      return false;
-    });
-  });
-
-  $(function() {
-    $('#get_unmarked_event').click(function (event) {
-      var targetUrl = $(this).attr("href");
-      $.confirm({
-          title: 'Desmarcar?',
-          content: 'Deseja desmarcar a hora marcada?',
-        confirmButton: 'Sim',
-        cancelButton: 'Cancelar',
-        confirmButtonClass: 'btn-danger',
-        theme: 'supervan',
-          confirm: function(){
-              window.location.href = targetUrl;
-          },
-          cancel: function(){
-
-          }
-      });
-      return false;
-    });
-  });
-
-$(function() {
-  $('#delete_agenda').click(function (event) {
-    var targetUrl = $(this).attr("href");
-    $.confirm({
-        title: 'Deletar agenda?',
-        content: 'Deseja deletar a agenda criada?',
-      confirmButton: 'Sim',
-      cancelButton: 'Cancelar',
-      confirmButtonClass: 'btn-danger',
-      theme: 'supervan',
-        confirm: function(){
-            window.location.href = targetUrl;
-        },
-        cancel: function(){
-
-        }
-    });
-    return false;
-  });
-});
 
 </script>
