@@ -83,6 +83,7 @@ module ApplicationHelper
       if agenda_item.unmarked_description.present?
         text << ' - Motivo: '<<agenda_item.unmarked_description
       end
+      return text
     end
   end
 
