@@ -135,3 +135,70 @@
     </table>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $(function() {
+    $('#attended_event').click(function (event) {
+      var targetUrl = $(this).attr("href");
+      $.confirm({
+          title: 'Compareceu?',
+          content: 'Marcar comparecimemto na hora marcada',
+        confirmButton: 'Sim',
+        cancelButton: 'Cancelar',
+        confirmButtonClass: 'btn-danger',
+        theme: 'supervan',
+          confirm: function(){
+              window.location.href = targetUrl;
+          },
+          cancel: function(){
+
+          }
+      });
+      return false;
+    });
+  });
+
+  $(function() {
+    $('#not_attended_event').click(function (event) {
+      var targetUrl = $(this).attr("href");
+      $.confirm({
+          title: 'Faltou?',
+          content: 'Deseja marcar a falta na hora marcada?',
+        confirmButton: 'Sim',
+        cancelButton: 'Cancelar',
+        confirmButtonClass: 'btn-danger',
+        theme: 'supervan',
+          confirm: function(){
+              window.location.href = targetUrl;
+          },
+          cancel: function(){
+
+          }
+      });
+      return false;
+    });
+  });
+
+  $(function() {
+    $('#get_unmarked_event').click(function (event) {
+      var targetUrl = $(this).attr("href");
+      $.confirm({
+          title: 'Desmarcar?',
+          content: 'Deseja desmarcar a hora marcada?',
+        confirmButton: 'Sim',
+        cancelButton: 'Cancelar',
+        confirmButtonClass: 'btn-danger',
+        theme: 'supervan',
+          confirm: function(){
+              window.location.href = targetUrl;
+          },
+          cancel: function(){
+
+          }
+      });
+      return false;
+    });
+  });
+
+</script>
