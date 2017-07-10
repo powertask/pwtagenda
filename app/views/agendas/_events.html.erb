@@ -33,11 +33,11 @@
           <% end %>
 
           <% if agenda_item.marked? %>
-            <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, remote: true, data: {confirm: 'Deseja efetivar a consulta'}, class: "btn btn-xs btn-default" %>
+            <%= link_to "Compareceu a Consulta?", {controller: "tickets", action: "new_ticket_from_agenda", cod: agenda_item.id}, class: "btn btn-xs btn-default" %>
 
-            <%= link_to "Faltou?", {controller: "agenda_items", action: "set_not_attended_event", cod: agenda_item.id}, remote: true, data: {confirm: 'Deseja marcar a FALTA na consulta?'}, class: "btn btn-xs btn-default" %>
+            <%= link_to "Faltou?", set_not_attended_event_path(agenda_item.id), class: "btn btn-xs btn-default", method: :patch, data: { confirm: "Deseja marcar FALTA para o paciente?" } %>
 
-            <%= link_to("Desmarcar?", get_unmarked_event_path(agenda_item.id), method: :get, remote: true, data: {Confirm: 'Deseja DESMARCAR a consulta?'}, class: "btn btn-xs btn-default") %>
+            <%= link_to("Desmarcar?", get_unmarked_event_path(agenda_item.id), method: :get, class: "btn btn-xs btn-default") %>
           <% end %>       
         </div>
 

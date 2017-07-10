@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post 'create_ticket_from_agenda' => 'tickets#create_ticket_from_agenda', as: :create_ticket_from_agenda
 
   get 'set_attended_event/:cod', to: 'agenda_items#set_attended_event', via: [:get, :post]
-  get 'set_not_attended_event/:cod', to: 'agenda_items#set_not_attended_event', via: [:get, :post]
+  patch 'set_not_attended_event/:cod', to: 'agenda_items#set_not_attended_event', as: :set_not_attended_event
   post 'set_new_event/:cod', to: 'agenda_items#set_new_event', as: :set_new_event
 
   get 'get_unmarked_event/:id', to: 'agenda_items#get_unmarked_event', as: :get_unmarked_event
