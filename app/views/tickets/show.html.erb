@@ -9,6 +9,8 @@
   <%= @ticket.id %>
   <div class='label1 top req'> <%=t("doctor.name") %>: </div>
   <%= @ticket.doctor.name %>
+  <div class='label1 top req'> Data da Consulta: </div>
+  <%= @ticket.ticket_datetime.to_s_br  %>
   <div class='label1 top req'> <%=t("ticket.patient") %>: </div>
   <%= link_to(@ticket.patient.name, patient_path(@ticket.patient_id)) %>
   <div class='label1 top req'> <%=t("health_insurance.name") %>: </div>

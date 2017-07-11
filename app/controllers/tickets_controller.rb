@@ -15,6 +15,7 @@ class TicketsController < ApplicationController
 
   def new
     @ticket = Ticket.new
+    @ticket.unit_id = current_user.unit_id
     respond_with @ticket
   end
 
@@ -24,7 +25,16 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
+
+    _year = @ticket.ticket_date.year
+    _month = @ticket.ticket_date.month
+    _day =  @ticket.ticket_date.day
+    _hour = @ticket.ticket_time.hour
+    _min = @ticket.ticket_time.min
+
     @ticket.unit_id = current_user.unit_id
+    @ticket.ticket_datetime = Time.zone.local(_year, _month, _day, _hour, _min, 0)
+
     @ticket.save
     respond_with @ticket
   end
@@ -34,7 +44,6 @@ class TicketsController < ApplicationController
     @ticket.update_attributes(ticket_params)
     respond_with @ticket
   end
-
 
   def new_ticket_from_agenda
     agenda_item = AgendaItem.list(current_user.unit_id).where('id = ?', params[:cod])[0]
@@ -46,8 +55,7 @@ class TicketsController < ApplicationController
     @ticket.health_insurance_id = agenda_item.patient.health_insurance_id
     @ticket.doctor_id = agenda.doctor_id
     @ticket.patient_id = agenda_item.patient_id
-    @ticket.created_at = Time.current
-    
+    @ticket.ticket_datetime = agenda_item.scheduled_to
   end
 
   def create_ticket_from_agenda
@@ -66,7 +74,7 @@ class TicketsController < ApplicationController
 
   private
     def ticket_params
-      params.require(:ticket).permit(:unit_id, :procedure_description, :agenda_item_id, :health_insurance_id, :doctor_id, :patient_id, :procedure_id, :auth_code, :procedure_2_id, :procedure_3_id, :auth_code_2, :auth_code_3, :procedure_description_2, :procedure_description_3)
+      params.require(:ticket).permit(:unit_id, :ticket_datetime, :ticket_date, :ticket_time, :procedure_description, :agenda_item_id, :health_insurance_id, :doctor_id, :patient_id, :procedure_id, :auth_code, :procedure_2_id, :procedure_3_id, :auth_code_2, :auth_code_3, :procedure_description_2, :procedure_description_3)
     end
 
 end

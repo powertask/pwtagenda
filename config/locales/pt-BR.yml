@@ -194,6 +194,7 @@ pt-BR:
     procedure_description: Descrição do Procedimento
     auth_code: Código de Autorização
     id: ID da Consulta
+    new: Cadastrar Nova Consulta
 
   will_paginate:
     previous_label: "&#8592; Anterior"

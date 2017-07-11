@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705130034) do
+ActiveRecord::Schema.define(version: 20170711151422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,9 @@ ActiveRecord::Schema.define(version: 20170705130034) do
     t.string "auth_code_3"
     t.string "procedure_description_2"
     t.string "procedure_description_3"
+    t.datetime "ticket_datetime"
+    t.date "ticket_date"
+    t.time "ticket_time"
     t.index ["agenda_item_id"], name: "index_tickets_on_agenda_item_id"
     t.index ["doctor_id"], name: "index_tickets_on_doctor_id"
     t.index ["health_insurance_id"], name: "index_tickets_on_health_insurance_id"

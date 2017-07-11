@@ -1,18 +1,5 @@
-<div class='section'>
-  <div class='label1 top req'> <%=t("ticket.id") %>: </div>
-  <span><%= @ticket.id %></span>
-  <div class='label1 top req'> <%=t("agenda_item.id") %>: </div>
-  <span><%= @ticket.agenda_item.id if @ticket.agenda_item_id %></span>
-  <div class='label1 top req'> Data da Consulta: </div>
-  <span class="label label-success"><%= @ticket.ticket_datetime.to_s_br %></span>
-  <div class='label1 top req'> <%=t("doctor.name") %>: </div>
-  <span class="label label-success"><%= @ticket.doctor.name %></span>
-  <div class='label1 top req'> <%=t("ticket.patient") %>: </div>
-  <span class="label label-success"><%= link_to(@ticket.patient.name, patient_path(@ticket.patient_id)) %></span>
-</div>
-</br>
+<div class='title'> <%= t('ticket.new') %> </div>
 <br>
-
 <%= simple_form_for(
     @ticket,
     html: { class: 'form-horizontal' }, 
@@ -26,7 +13,12 @@
 
   <%= f.error_notification %>
 
+  <%= f.input :unit_id, as: :hidden %>
+  <%= f.association :doctor, label: "Profissional", collection: Doctor.list(current_user.unit_id).order(:name) %>
   <%= f.association :health_insurance, label: "Convênio/Plano de Saúde do Paciente", collection: HealthInsurance.list(current_user.unit_id).order(:name) %>
+  <%= f.input :ticket_date, as: :string, label: 'Data da Consulta' %>
+  <%= f.input :ticket_time, as: :hour, label: 'Hora da Consulta' %>
+  <%= f.association :patient, label: "Paciente", collection: Patient.list(current_user.unit_id).order(:name) %>
 
   <div id='form_procedure_1'>
     <div class='subtitle'> Procedimento 1 </div><br> 
@@ -52,7 +44,8 @@
   <div class='buttonbar'>
     <%= f.button :submit, t('menu.save'), class: 'btn-primary' %>
     <%= 'ou' %>
-    <%= link_to t('menu.cancel'), tickets_path %>
+    <%= link_to t('menu.cancel'), root_path %>
   </div>
 <% end %>
+
 

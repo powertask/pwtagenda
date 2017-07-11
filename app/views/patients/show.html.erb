@@ -34,7 +34,7 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Data Agendamento</th>
+          <th>Data da Consulta</th>
           <th>Profissional</th>
           <th>Convênio</th>
           <th></th>
@@ -47,7 +47,7 @@
               <%= link_to(ticket.id, ticket_path(ticket.id)) %>
             </td>
             <td>
-              <%= ticket.agenda_item.scheduled_to.to_s_br %>
+              <%= ticket.ticket_datetime.to_s_br %>
             </td>
             <td>
               <%= ticket.doctor.name %>
